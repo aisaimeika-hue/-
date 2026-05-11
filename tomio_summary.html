@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>石井富夫 近況</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Hiragino Sans', 'Meiryo', sans-serif;
+    background: #f0f4f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  .card {
+    width: 600px;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  }
+
+  /* ヘッダー */
+  .header {
+    background: linear-gradient(135deg, #1a3a5c, #2e6da4);
+    color: white;
+    padding: 24px 28px 20px;
+    text-align: center;
+  }
+  .header .name {
+    font-size: 13px;
+    opacity: 0.85;
+    margin-bottom: 4px;
+    letter-spacing: 2px;
+  }
+  .header h1 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+  .header .subtitle {
+    font-size: 12px;
+    opacity: 0.75;
+  }
+
+  /* メインコンテンツ */
+  .body {
+    padding: 22px 26px;
+  }
+
+  /* 診断セクション */
+  .diagnosis-box {
+    background: #fff5f5;
+    border: 2px solid #e74c3c;
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin-bottom: 18px;
+    text-align: center;
+  }
+  .diagnosis-box .label {
+    font-size: 11px;
+    color: #e74c3c;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .diagnosis-box .disease {
+    font-size: 20px;
+    font-weight: bold;
+    color: #c0392b;
+    margin-bottom: 10px;
+  }
+  .diagnosis-box .desc {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  /* 3カラム説明 */
+  .three-col {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .info-box {
+    flex: 1;
+    border-radius: 12px;
+    padding: 14px 12px;
+    text-align: center;
+  }
+  .info-box .icon {
+    font-size: 24px;
+    margin-bottom: 6px;
+  }
+  .info-box .title {
+    font-size: 11px;
+    font-weight: bold;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+  }
+  .info-box .content {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .box-yellow { background: #fffbeb; border: 1.5px solid #f59e0b; }
+  .box-yellow .title { color: #d97706; }
+  .box-blue   { background: #eff6ff; border: 1.5px solid #3b82f6; }
+  .box-blue .title   { color: #2563eb; }
+  .box-green  { background: #f0fdf4; border: 1.5px solid #22c55e; }
+  .box-green .title  { color: #16a34a; }
+
+  /* 手術スケジュール */
+  .schedule-section {
+    margin-bottom: 18px;
+  }
+  .section-title {
+    font-size: 13px;
+    font-weight: bold;
+    color: #1a3a5c;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    border-left: 4px solid #2e6da4;
+  }
+  .schedule-options {
+    display: flex;
+    gap: 12px;
+  }
+  .option-box {
+    flex: 1;
+    border-radius: 12px;
+    padding: 14px;
+  }
+  .option-a {
+    background: #eff6ff;
+    border: 1.5px solid #3b82f6;
+  }
+  .option-b {
+    background: #f0fdf4;
+    border: 1.5px solid #22c55e;
+  }
+  .option-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-bottom: 6px;
+  }
+  .option-a .option-tag { background: #3b82f6; color: white; }
+  .option-b .option-tag { background: #22c55e; color: white; }
+  .option-date {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+  .option-a .option-date { color: #1d4ed8; }
+  .option-b .option-date { color: #15803d; }
+  .option-desc {
+    font-size: 11.5px;
+    color: #444;
+    line-height: 1.6;
+  }
+  .option-merit {
+    font-size: 11px;
+    margin-top: 6px;
+    padding: 5px 8px;
+    border-radius: 6px;
+  }
+  .option-a .option-merit { background: #dbeafe; color: #1e40af; }
+  .option-b .option-merit { background: #dcfce7; color: #166534; }
+
+  /* タイムライン */
+  .timeline-section { margin-bottom: 18px; }
+  .timeline {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+  }
+  .tl-item {
+    flex: 1;
+    text-align: center;
+    position: relative;
+  }
+  .tl-item:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    right: -8px;
+    top: 16px;
+    font-size: 14px;
+    color: #94a3b8;
+    z-index: 1;
+  }
+  .tl-dot {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #2e6da4;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 5px;
+  }
+  .tl-dot.done { background: #64748b; }
+  .tl-dot.now  { background: #e74c3c; }
+  .tl-dot.next { background: #2e6da4; }
+  .tl-date {
+    font-size: 10px;
+    color: #666;
+    margin-bottom: 2px;
+  }
+  .tl-label {
+    font-size: 11px;
+    font-weight: bold;
+    color: #333;
+    line-height: 1.3;
+  }
+
+  /* メモ */
+  .memo-box {
+    background: #f8fafc;
+    border: 1.5px dashed #94a3b8;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 18px;
+  }
+  .memo-box p {
+    font-size: 12.5px;
+    color: #475569;
+    line-height: 1.8;
+  }
+  .memo-box p span {
+    font-weight: bold;
+    color: #1a3a5c;
+  }
+
+  /* フッター */
+  .footer {
+    background: #1a3a5c;
+    color: rgba(255,255,255,0.8);
+    text-align: center;
+    padding: 12px;
+    font-size: 11px;
+    line-height: 1.7;
+  }
+  .footer strong {
+    color: white;
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="name">石井 富夫（父）近況のご報告</div>
+    <h1>❤️ 心臓の手術を受けることになりました</h1>
+    <div class="subtitle">ご心配いただいた方へ / 2025年5月</div>
+  </div>
+
+  <div class="body">
+
+    <!-- 診断 -->
+    <div class="diagnosis-box">
+      <div class="label">🏥 現在の診断</div>
+      <div class="disease">大動脈弁閉鎖不全症（重症）</div>
+      <div class="desc">
+        心臓の弁がうまく閉まらず、送り出した血液が逆流してしまう病気です。<br>
+        心臓がだんだん大きくなってきており（現在 約60mm）、手術が必要な段階です。
+      </div>
+    </div>
+
+    <!-- 3カラム -->
+    <div class="three-col">
+      <div class="info-box box-yellow">
+        <div class="icon">⚠️</div>
+        <div class="title">放置すると？</div>
+        <div class="content">
+          心不全・不整脈のリスクが高まり、<br>
+          <strong>80歳前に心不全になる可能性が高い</strong>と医師より説明あり
+        </div>
+      </div>
+      <div class="info-box box-blue">
+        <div class="icon">🔧</div>
+        <div class="title">治療方法</div>
+        <div class="content">
+          開胸手術で<br>
+          <strong>人工弁に交換</strong>する手術。<br>
+          リスクは約1%。医師は信頼できる方。
+        </div>
+      </div>
+      <div class="info-box box-green">
+        <div class="icon">🚶</div>
+        <div class="title">回復の見通し</div>
+        <div class="content">
+          入院 約2〜3週間。<br>
+          自宅療養1ヶ月。<br>
+          <strong>約3ヶ月で社会復帰</strong>の見込み。
+        </div>
+      </div>
+    </div>
+
+    <!-- 手術スケジュール -->
+    <div class="schedule-section">
+      <div class="section-title">📅 手術時期（現在検討中）</div>
+      <div class="schedule-options">
+        <div class="option-box option-a">
+          <span class="option-tag">案①</span>
+          <div class="option-date">⭐ 6月10日 手術</div>
+          <div class="option-desc">早期対応で医学的に安全寄り</div>
+          <div class="option-merit">✅ 早めで安心<br>⚠ 退院後は少し1人の時間も</div>
+        </div>
+        <div class="option-box option-b">
+          <span class="option-tag">案②</span>
+          <div class="option-date">⭐ 8月末〜9月 手術</div>
+          <div class="option-desc">真夏を避け、環境・QOL重視</div>
+          <div class="option-merit">✅ 11月には社会復帰・みかん園へ<br>⚠ その間は心臓に注意</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- タイムライン -->
+    <div class="timeline-section">
+      <div class="section-title">🕐 これまでの流れ</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot done">済</div>
+          <div class="tl-date">〜2月</div>
+          <div class="tl-label">溺水・失神</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot done">済</div>
+          <div class="tl-date">2〜4月</div>
+          <div class="tl-label">検査・診断</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot done">済</div>
+          <div class="tl-date">5月初旬</div>
+          <div class="tl-label">医師より説明</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot now">今</div>
+          <div class="tl-date">5/15（金）</div>
+          <div class="tl-label">医師と再相談</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot next">次</div>
+          <div class="tl-date">6月or8月〜</div>
+          <div class="tl-label">手術・入院</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- メモ -->
+    <div class="memo-box">
+      <p>
+        💬 本人は少し不安はあるものの、<span>医師の説明をしっかり理解</span>しています。<br>
+        家族全員で支えながら、<span>「長生き」だけでなく"本人らしく回復できること"</span>を大切に、<br>
+        手術時期を5月15日の再診後に最終決定する予定です。
+      </p>
+    </div>
+
+  </div><!-- /body -->
+
+  <!-- フッター -->
+  <div class="footer">
+    <strong>温かく見守っていただけると幸いです。ありがとうございます 🙏</strong><br>
+    ご質問等は家族までお気軽にどうぞ。
+  </div>
+
+</div>
+</body>
+</html>
