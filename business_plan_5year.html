@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>農業経営改善計画認定申請書 5ヵ年計画 - ザ・作兵衛フルーツガーデン</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans JP', 'Hiragino Sans', 'Meiryo', sans-serif;
+    background: #f0f4f0;
+    padding: 20px;
+    font-size: 13px;
+    color: #1a2a1a;
+  }
+
+  .page {
+    width: 960px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    margin-bottom: 24px;
+  }
+
+  /* ヘッダー */
+  .main-header {
+    background: linear-gradient(135deg, #1a4a2a, #2d7a3a, #4caf50);
+    color: white;
+    padding: 28px 36px 22px;
+  }
+  .main-header .doc-type {
+    font-size: 11px;
+    opacity: 0.8;
+    letter-spacing: 3px;
+    margin-bottom: 6px;
+  }
+  .main-header h1 {
+    font-size: 24px;
+    font-weight: 900;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .main-header .meta {
+    display: flex;
+    gap: 24px;
+    font-size: 12px;
+    opacity: 0.9;
+  }
+  .main-header .meta span { display: flex; align-items: center; gap: 4px; }
+
+  /* セクションヘッダー */
+  .section {
+    padding: 24px 32px;
+    border-bottom: 1px solid #e8f0e8;
+  }
+  .section:last-child { border-bottom: none; }
+
+  .section-title {
+    font-size: 15px;
+    font-weight: bold;
+    color: #1a4a2a;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 3px solid #2d7a3a;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* アラートボックス */
+  .alert-box {
+    background: #fff5f5;
+    border: 2px solid #e74c3c;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+  }
+  .alert-box .alert-title {
+    font-size: 13px;
+    font-weight: bold;
+    color: #c0392b;
+    margin-bottom: 8px;
+  }
+  .alert-box .alert-content {
+    font-size: 12.5px;
+    color: #333;
+    line-height: 1.8;
+  }
+
+  /* 実績テーブル */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+    font-size: 12.5px;
+  }
+  th {
+    background: #1a4a2a;
+    color: white;
+    padding: 9px 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 11.5px;
+  }
+  th.sub { background: #2d7a3a; }
+  td {
+    padding: 8px 10px;
+    border: 1px solid #dce8dc;
+    text-align: right;
+  }
+  td.label { text-align: left; font-weight: bold; color: #1a4a2a; }
+  td.label-sub { text-align: left; color: #555; padding-left: 20px; font-size: 11.5px; }
+  tr:nth-child(even) td { background: #f6fbf6; }
+  tr.total td { background: #e8f5e8; font-weight: bold; border-top: 2px solid #2d7a3a; }
+  tr.highlight td { background: #fff9e6; }
+  tr.warning td { background: #fff0f0; }
+  tr.alert td { background: #ffebeb; font-weight: bold; color: #c0392b; }
+
+  .num { text-align: right; }
+  .pos { color: #1a6a1a; font-weight: bold; }
+  .neg { color: #c0392b; font-weight: bold; }
+  .neutral { color: #555; }
+
+  /* 2026年修正ボックス */
+  .revision-box {
+    background: linear-gradient(135deg, #fff8e1, #fffde7);
+    border: 2px solid #f59e0b;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+  }
+  .revision-box .r-title {
+    font-size: 13px;
+    font-weight: bold;
+    color: #d97706;
+    margin-bottom: 10px;
+  }
+  .revision-box .r-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  .r-item {
+    background: white;
+    border-radius: 8px;
+    padding: 10px 12px;
+    border: 1px solid #fcd34d;
+  }
+  .r-item .r-label { font-size: 10.5px; color: #888; margin-bottom: 4px; }
+  .r-item .r-value { font-size: 16px; font-weight: bold; color: #92400e; }
+  .r-item .r-note { font-size: 10px; color: #b45309; margin-top: 3px; }
+
+  /* 5年計画グリッド */
+  .plan-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .year-card {
+    border-radius: 10px;
+    padding: 14px 10px;
+    text-align: center;
+    border: 2px solid;
+  }
+  .year-card.actual { background: #f0f9f0; border-color: #4caf50; }
+  .year-card.current { background: #fff8e1; border-color: #f59e0b; }
+  .year-card.plan { background: #e8f4fd; border-color: #3b82f6; }
+  .year-card.target { background: #f0e8ff; border-color: #9333ea; }
+
+  .year-card .yc-year { font-size: 11px; font-weight: bold; color: #555; margin-bottom: 4px; }
+  .year-card .yc-label { font-size: 10px; color: #888; margin-bottom: 8px; }
+  .year-card .yc-revenue { font-size: 15px; font-weight: 900; margin-bottom: 4px; }
+  .year-card .yc-income { font-size: 12px; font-weight: bold; }
+  .year-card .yc-growth { font-size: 10px; margin-top: 6px; padding: 3px 6px; border-radius: 10px; display: inline-block; }
+
+  .year-card.actual .yc-revenue { color: #1a4a2a; }
+  .year-card.current .yc-revenue { color: #b45309; }
+  .year-card.plan .yc-revenue { color: #1d4ed8; }
+  .year-card.target .yc-revenue { color: #6b21a8; }
+
+  /* 品目別計画 */
+  .channel-table th { background: #1a4a2a; }
+  .channel-table td.channel { background: #f6fbf6; font-weight: bold; color: #1a4a2a; }
+
+  /* リスク分析 */
+  .risk-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .risk-item {
+    border-radius: 10px;
+    padding: 14px;
+  }
+  .risk-item.high { background: #fff0f0; border: 1.5px solid #e74c3c; }
+  .risk-item.mid  { background: #fffbeb; border: 1.5px solid #f59e0b; }
+  .risk-item.low  { background: #f0f9f0; border: 1.5px solid #22c55e; }
+  .risk-item .risk-tag {
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 6px;
+  }
+  .risk-item.high .risk-tag { background: #e74c3c; color: white; }
+  .risk-item.mid  .risk-tag { background: #f59e0b; color: white; }
+  .risk-item.low  .risk-tag { background: #22c55e; color: white; }
+  .risk-item .risk-title { font-size: 13px; font-weight: bold; margin-bottom: 6px; color: #222; }
+  .risk-item .risk-desc { font-size: 12px; color: #444; line-height: 1.7; }
+
+  /* 戦略アクション */
+  .action-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .action-list li {
+    background: #f6fbf6;
+    border-left: 4px solid #2d7a3a;
+    padding: 10px 14px;
+    border-radius: 0 8px 8px 0;
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: #1a3a1a;
+  }
+  .action-list li strong { color: #1a4a2a; display: block; font-size: 13px; }
+
+  /* タイムライン */
+  .timeline-row {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin-bottom: 12px;
+  }
+  .tl-cell {
+    flex: 1;
+    text-align: center;
+    padding: 10px 6px;
+    border: 1px solid #dce8dc;
+    font-size: 11.5px;
+  }
+  .tl-cell:first-child { border-radius: 8px 0 0 8px; background: #1a4a2a; color: white; font-weight: bold; flex: 0 0 80px; }
+  .tl-cell.phase-1 { background: #e8f5e8; color: #1a4a2a; }
+  .tl-cell.phase-2 { background: #e8f0ff; color: #1a2a6a; }
+  .tl-cell.phase-3 { background: #fff0e8; color: #6a2a1a; }
+  .tl-cell:last-child { border-radius: 0 8px 8px 0; }
+
+  /* 投資計画 */
+  .invest-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .invest-card {
+    background: #f6fbf6;
+    border: 1.5px solid #2d7a3a;
+    border-radius: 10px;
+    padding: 12px 8px;
+    text-align: center;
+  }
+  .invest-card .ic-year { font-size: 11px; font-weight: bold; color: #555; margin-bottom: 6px; }
+  .invest-card .ic-items { font-size: 11px; color: #333; line-height: 1.7; margin-bottom: 8px; }
+  .invest-card .ic-total { font-size: 14px; font-weight: 900; color: #1a4a2a; }
+
+  /* フッター */
+  .doc-footer {
+    background: #1a4a2a;
+    color: rgba(255,255,255,0.85);
+    padding: 16px 32px;
+    font-size: 11px;
+    line-height: 1.8;
+  }
+  .doc-footer strong { color: white; }
+
+  /* 承認欄 */
+  .approval-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    border: 2px solid #1a4a2a;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 16px;
+  }
+  .approval-cell {
+    padding: 12px;
+    border-right: 1px solid #1a4a2a;
+    text-align: center;
+    background: #f6fbf6;
+  }
+  .approval-cell:last-child { border-right: none; }
+  .approval-cell .ac-label { font-size: 10px; color: #555; margin-bottom: 20px; }
+  .approval-cell .ac-sign { border-top: 1px solid #333; margin-top: 20px; font-size: 10px; color: #888; padding-top: 4px; }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .page { box-shadow: none; border-radius: 0; width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== PAGE 1: 基本情報・実績まとめ ========== -->
+<div class="page">
+
+  <div class="main-header">
+    <div class="doc-type">認定農業者申請書類 / 農業経営改善計画</div>
+    <h1>🌿 ザ・作兵衛フルーツガーデン 5ヵ年農業経営改善計画<br>
+      <span style="font-size:16px;opacity:0.9;">2026〜2030年度 目標設定・行動計画書</span>
+    </h1>
+    <div class="meta">
+      <span>📋 申請者：石井 孝太郎</span>
+      <span>🏡 組合員コード：N02058（三浦市農業協同組合）</span>
+      <span>📅 作成日：2026年6月</span>
+      <span>📍 三浦市南下浦町菊名868</span>
+    </div>
+  </div>
+
+  <!-- 緊急アラート -->
+  <div class="section">
+    <div class="section-title">🚨 2026年上半期（1-5月）緊急実績警報</div>
+
+    <div class="alert-box">
+      <div class="alert-title">⚠️ 大根相場が歴史的暴落水準に突入 — 上半期JA出荷で▲5,684,199円の減収確定</div>
+      <div class="alert-content">
+        三浦青首大根の市場単価が前年比▲42%（1,314円→765円/箱）と歴史的低水準に。
+        数量は▲4.5%の微減（7,939→7,581箱）にとどまるも、単価暴落で売上額が▲44.4%減少。
+        加えてキャベツはべと病による約32%廃棄、コンテナ契約出荷は前年比50%にとどまった。
+        この結果2026年通年売上は当初計画（3,600万円）から下方修正が不可避。<strong>修正見込み：約3,200〜3,400万円。</strong>
+      </div>
+    </div>
+
+    <div class="revision-box">
+      <div class="r-title">📊 2026年上半期 JA出荷実績（三浦市農業協同組合 2026年5月27日付）</div>
+      <div class="r-grid">
+        <div class="r-item">
+          <div class="r-label">上半期売上金額</div>
+          <div class="r-value">11,186,284円</div>
+          <div class="r-note">前年同期比 ▲33.7%（▲5,684,199円）</div>
+        </div>
+        <div class="r-item">
+          <div class="r-label">振込金額（手取り）</div>
+          <div class="r-value">8,735,505円</div>
+          <div class="r-note">前年同期比 ▲36.2%（▲4,948,820円）</div>
+        </div>
+        <div class="r-item">
+          <div class="r-label">経費率悪化</div>
+          <div class="r-value">21.9%</div>
+          <div class="r-note">前年18.9%から +3.0pt悪化</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 品目別単価崩壊 -->
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align:left;">品目</th>
+          <th>2025数量</th>
+          <th>2025売上</th>
+          <th>2025単価</th>
+          <th>2026数量</th>
+          <th>2026売上</th>
+          <th>2026単価</th>
+          <th>単価変化</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="alert">
+          <td class="label">三浦青首大根</td>
+          <td class="num">7,939箱</td>
+          <td class="num">10,435,243</td>
+          <td class="num">1,314円</td>
+          <td class="num">7,581箱</td>
+          <td class="num">5,802,165</td>
+          <td class="num">765円</td>
+          <td class="num neg">▲42.0%</td>
+        </tr>
+        <tr>
+          <td class="label">本春キャベツ・平箱</td>
+          <td class="num">2,550箱</td>
+          <td class="num">3,262,326</td>
+          <td class="num">1,279円</td>
+          <td class="num">2,870箱</td>
+          <td class="num">3,239,764</td>
+          <td class="num">1,129円</td>
+          <td class="num neg">▲11.7%</td>
+        </tr>
+        <tr>
+          <td class="label">本春キャベツコンテナ（小）</td>
+          <td class="num">1,500箱</td>
+          <td class="num">1,850,165</td>
+          <td class="num">1,233円</td>
+          <td class="num">900箱</td>
+          <td class="num">1,072,669</td>
+          <td class="num">1,192円</td>
+          <td class="num neutral">▲40%（数量減）</td>
+        </tr>
+        <tr class="highlight">
+          <td class="label">冬ネギ（大箱）</td>
+          <td class="num">151箱</td>
+          <td class="num">445,824</td>
+          <td class="num">2,952円</td>
+          <td class="num">216箱</td>
+          <td class="num">551,707</td>
+          <td class="num">2,554円</td>
+          <td class="num pos">数量 +43.0%↑</td>
+        </tr>
+        <tr class="total">
+          <td class="label">上半期 合計</td>
+          <td class="num">12,938</td>
+          <td class="num">16,870,483</td>
+          <td class="num">—</td>
+          <td class="num">12,097</td>
+          <td class="num">11,186,284</td>
+          <td class="num">—</td>
+          <td class="num neg">▲33.7%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 3年実績まとめ -->
+  <div class="section">
+    <div class="section-title">📊 直近3ヵ年 経営実績（2023〜2025年）</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align:left;width:200px;">項目</th>
+          <th>2023年（実績）</th>
+          <th>2024年（実績）</th>
+          <th>2025年（実績）</th>
+          <th>3年平均</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="total">
+          <td class="label">売上高 合計</td>
+          <td class="num">31,235,825</td>
+          <td class="num">33,599,272</td>
+          <td class="num">38,420,724</td>
+          <td class="num">34,418,607</td>
+        </tr>
+        <tr>
+          <td class="label-sub">└ 大根・野菜類（JA）</td>
+          <td class="num">約24,000,000</td>
+          <td class="num">約24,500,000</td>
+          <td class="num">約27,000,000</td>
+          <td class="num">—</td>
+        </tr>
+        <tr>
+          <td class="label-sub">└ みかん（直売・JA）</td>
+          <td class="num">114,150</td>
+          <td class="num">約200,000</td>
+          <td class="num">2,332,835</td>
+          <td class="num">—</td>
+        </tr>
+        <tr>
+          <td class="label-sub">└ ブルーベリー（直売）</td>
+          <td class="num">—</td>
+          <td class="num">470,000</td>
+          <td class="num">353,800</td>
+          <td class="num">—</td>
+        </tr>
+        <tr>
+          <td class="label-sub">└ 宅配チャネル</td>
+          <td class="num">—</td>
+          <td class="num">—</td>
+          <td class="num">2,751,398</td>
+          <td class="num">—</td>
+        </tr>
+        <tr>
+          <td class="label">農業生産原価</td>
+          <td class="num">約25,000,000</td>
+          <td class="num">约32,000,000</td>
+          <td class="num">約31,700,000</td>
+          <td class="num">—</td>
+        </tr>
+        <tr>
+          <td class="label">荷造運賃費</td>
+          <td class="num">—</td>
+          <td class="num">—</td>
+          <td class="num">3,257,731</td>
+          <td class="num">—</td>
+        </tr>
+        <tr class="total">
+          <td class="label">農業所得（控除前）</td>
+          <td class="num pos">+4,115,542</td>
+          <td class="num neg">▲351,767</td>
+          <td class="num pos">+3,603,154</td>
+          <td class="num pos">+2,455,643</td>
+        </tr>
+        <tr>
+          <td class="label">専従者給与・家族生活費</td>
+          <td class="num">5,600,000</td>
+          <td class="num">5,600,000</td>
+          <td class="num">6,185,000</td>
+          <td class="num">—</td>
+        </tr>
+        <tr class="total">
+          <td class="label">世帯可処分所得</td>
+          <td class="num pos">9,715,542</td>
+          <td class="num pos">5,248,233</td>
+          <td class="num pos">9,788,154</td>
+          <td class="num pos">8,250,643</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="background:#f0f9ff;border:1.5px solid #3b82f6;border-radius:10px;padding:12px 16px;font-size:12px;color:#1e3a5f;line-height:1.8;">
+      <strong>🔍 構造分析：</strong>
+      2024年赤字（▲351,767円）は投資集中年。2025年回復（+3,603,154円）はみかん直売の爆発的成長（+20倍：114,150→2,332,835円）が主因。
+      ただし<strong>宅配チャネルは逆ざや確定</strong>（荷造運賃3,257,731円 vs 宅配売上2,751,398円）。
+      2026年は大根暴落・キャベツ被害により下半期の直売収益（ブルーベリー・みかん）の補完が死活的に重要。
+    </div>
+  </div>
+
+</div>
+
+<!-- ========== PAGE 2: 5ヵ年計画数値 ========== -->
+<div class="page">
+
+  <div class="main-header">
+    <div class="doc-type">5ヵ年計画 数値目標</div>
+    <h1>📈 売上・所得 5ヵ年目標値（2026〜2030年）</h1>
+    <div class="meta">
+      <span>⚠️ 2026年は大根暴落による下方修正後の実態ベース計画</span>
+    </div>
+  </div>
+
+  <!-- 年度カード -->
+  <div class="section">
+    <div class="section-title">📊 年度別経営目標サマリー</div>
+
+    <div class="plan-grid">
+      <div class="year-card current">
+        <div class="yc-year">2026年</div>
+        <div class="yc-label">⚡ 嵐の年（修正済）</div>
+        <div class="yc-revenue">3,250万円</div>
+        <div class="yc-income" style="color:#b45309;">所得 ▲500万→回復中</div>
+        <div class="yc-growth" style="background:#fff0c0;color:#b45309;">大根暴落吸収</div>
+      </div>
+      <div class="year-card plan">
+        <div class="yc-year">2027年</div>
+        <div class="yc-label">🌱 再建・拡大</div>
+        <div class="yc-revenue">3,900万円</div>
+        <div class="yc-income" style="color:#1d4ed8;">所得 +350万円</div>
+        <div class="yc-growth" style="background:#dbeafe;color:#1e40af;">+20%↑</div>
+      </div>
+      <div class="year-card plan">
+        <div class="yc-year">2028年</div>
+        <div class="yc-label">💪 成長加速</div>
+        <div class="yc-revenue">4,500万円</div>
+        <div class="yc-income" style="color:#1d4ed8;">所得 +600万円</div>
+        <div class="yc-growth" style="background:#dbeafe;color:#1e40af;">+15%↑</div>
+      </div>
+      <div class="year-card plan">
+        <div class="yc-year">2029年</div>
+        <div class="yc-label">🚀 収益最大化</div>
+        <div class="yc-revenue">5,000万円</div>
+        <div class="yc-income" style="color:#1d4ed8;">所得 +800万円</div>
+        <div class="yc-growth" style="background:#dbeafe;color:#1e40af;">+11%↑</div>
+      </div>
+      <div class="year-card target">
+        <div class="yc-year">2030年</div>
+        <div class="yc-label">🏆 目標到達</div>
+        <div class="yc-revenue">5,700万円</div>
+        <div class="yc-income" style="color:#6b21a8;">所得 +1,000万円</div>
+        <div class="yc-growth" style="background:#f3e8ff;color:#6b21a8;">+14%↑</div>
+      </div>
+    </div>
+
+    <!-- メイン損益計画表 -->
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align:left;width:220px;">項目</th>
+          <th style="background:#555;">2025年<br>（実績）</th>
+          <th style="background:#c0392b;">2026年<br>（修正計画）</th>
+          <th>2027年<br>（計画）</th>
+          <th>2028年<br>（計画）</th>
+          <th>2029年<br>（計画）</th>
+          <th>2030年<br>（目標）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="total">
+          <td class="label">売上高 合計（円）</td>
+          <td class="num" style="background:#f0f0f0;">38,420,724</td>
+          <td class="num" style="background:#fff0f0;color:#c0392b;font-weight:bold;">32,500,000</td>
+          <td class="num">39,000,000</td>
+          <td class="num">45,000,000</td>
+          <td class="num">50,000,000</td>
+          <td class="num" style="background:#f0e8ff;font-weight:bold;color:#6b21a8;">57,000,000</td>
+        </tr>
+        <tr>
+          <td class="label-sub">└ 大根・野菜（JA市場）</td>
+          <td class="num" style="background:#f0f0f0;">約27,000,000</td>
+          <td class="num" style="background:#fff0f0;">21,000,000</td>
+          <td class="num">24,000,000</td>
+          <td class="num">25,000,000</td>
+          <td class="num">25,500,000</td>
+          <td class="num">26,000,000</td>
+        </tr>
+        <tr>
+          <td class="label-sub">└ キャベツコンテナ契約</td>
+          <td class="num" style="background:#f0f0f0;">約3,500,000</td>
+          <td class="num" style="background:#fff0f0;">2,500,000</td>
+          <td class="num">3,500,000</td>
+          <td class="num">4,500,000</td>
+          <td class="num">5,500,000</td>
+          <td class="num">6,500,000</td>
+        </tr>
+        <tr class="highlight">
+          <td class="label-sub">└ みかん（直売・体験）</td>
+          <td class="num" style="background:#f0f0f0;">2,332,835</td>
+          <td class="num" style="background:#fff8e1;">3,000,000</td>
+          <td class="num">4,500,000</td>
+          <td class="num">6,500,000</td>
+          <td class="num">8,000,000</td>
+          <td class="num">10,000,000</td>
+        </tr>
+        <tr class="highlight">
+          <td class="label-sub">└ ブルーベリー（直売・体験）</td>
+          <td class="num" style="background:#f0f0f0;">353,800</td>
+          <td class="num" style="background:#fff8e1;">1,500,000</td>
+          <td class="num">2,500,000</td>
+          <td class="num">4,000,000</td>
+          <td class="num">5,500,000</td>
+          <td class="num">7,500,000</td>
+        </tr>
+        <tr>
+          <td class="label-sub">└ 直売所・イベント出店</td>
+          <td class="num" style="background:#f0f0f0;">約500,000</td>
+          <td class="num" style="background:#fff8e1;">500,000</td>
+          <td class="num">1,500,000</td>
+          <td class="num">2,500,000</td>
+          <td class="num">3,500,000</td>
+          <td class="num">5,000,000</td>
+        </tr>
+        <tr>
+          <td class="label-sub">└ ECネット販売（送料別）</td>
+          <td class="num" style="background:#f0f0f0;">2,751,398</td>
+          <td class="num" style="background:#fff0f0;color:#c0392b;">0（廃止）</td>
+          <td class="num">0</td>
+          <td class="num">500,000</td>
+          <td class="num">1,000,000</td>
+          <td class="num">2,000,000</td>
+        </tr>
+        <tr>
+          <td class="label-sub">└ 加工品・冷凍ジャム等</td>
+          <td class="num" style="background:#f0f0f0;">0</td>
+          <td class="num" style="background:#f0f0f0;">0</td>
+          <td class="num">3,000,000</td>
+          <td class="num">2,000,000</td>
+          <td class="num">1,000,000</td>
+          <td class="num">0</td>
+        </tr>
+        <tr>
+          <td class="label">農業生産原価</td>
+          <td class="num" style="background:#f0f0f0;">約31,700,000</td>
+          <td class="num" style="background:#fff0f0;">27,500,000</td>
+          <td class="num">31,000,000</td>
+          <td class="num">34,500,000</td>
+          <td class="num">37,500,000</td>
+          <td class="num">41,000,000</td>
+        </tr>
+        <tr>
+          <td class="label">荷造・配送経費（宅配）</td>
+          <td class="num" style="background:#f0f0f0;">3,257,731</td>
+          <td class="num" style="background:#fff0f0;color:#22c55e;">500,000</td>
+          <td class="num">600,000</td>
+          <td class="num">800,000</td>
+          <td class="num">1,200,000</td>
+          <td class="num">1,800,000</td>
+        </tr>
+        <tr class="total">
+          <td class="label">農業所得（控除前）</td>
+          <td class="num pos" style="background:#f0f0f0;">+3,603,154</td>
+          <td class="num" style="background:#fff0f0;color:#c0392b;font-weight:bold;">▲500,000</td>
+          <td class="num pos">+3,500,000</td>
+          <td class="num pos">+6,000,000</td>
+          <td class="num pos">+8,500,000</td>
+          <td class="num pos" style="background:#f0e8ff;color:#6b21a8;font-weight:bold;">+11,000,000</td>
+        </tr>
+        <tr>
+          <td class="label">専従者給与・家族生活費</td>
+          <td class="num" style="background:#f0f0f0;">6,185,000</td>
+          <td class="num" style="background:#fff0f0;">6,185,000</td>
+          <td class="num">6,500,000</td>
+          <td class="num">6,800,000</td>
+          <td class="num">7,000,000</td>
+          <td class="num">7,000,000</td>
+        </tr>
+        <tr class="total">
+          <td class="label">世帯可処分所得（合計）</td>
+          <td class="num pos" style="background:#f0f0f0;">9,788,154</td>
+          <td class="num" style="background:#fff0f0;color:#c0392b;font-weight:bold;">5,685,000</td>
+          <td class="num pos">10,000,000</td>
+          <td class="num pos">12,800,000</td>
+          <td class="num pos">15,500,000</td>
+          <td class="num pos" style="background:#f0e8ff;color:#6b21a8;font-weight:bold;">18,000,000</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="background:#fff8dc;border:1.5px solid #f59e0b;border-radius:10px;padding:12px 16px;font-size:12px;color:#7c4a00;line-height:1.8;margin-top:8px;">
+      <strong>📌 2026年下方修正の根拠：</strong>
+      上半期JA出荷確定値（売上11,186,284円）＋下半期見込み（みかん直売3,000,000円、ブルーベリー1,500,000円、大根・野菜秋冬出荷10,000,000円、その他6,800,000円）＝ 約32,500,000円。
+      宅配チャネルは<strong>荷造運賃が売上を上回る逆ざや構造</strong>のため2026年度中に廃止・直売へシフト。
+    </div>
+  </div>
+
+</div>
+
+<!-- ========== PAGE 3: 品目別計画・戦略 ========== -->
+<div class="page">
+
+  <div class="main-header">
+    <div class="doc-type">5ヵ年計画 戦略詳細</div>
+    <h1>🌾 品目別戦略・リスク管理・投資計画</h1>
+  </div>
+
+  <!-- 品目別詳細計画 -->
+  <div class="section">
+    <div class="section-title">📦 主要品目別 売上計画（万円）</div>
+
+    <table class="channel-table">
+      <thead>
+        <tr>
+          <th style="text-align:left;width:180px;">品目</th>
+          <th class="sub">2023実績</th>
+          <th class="sub">2024実績</th>
+          <th class="sub">2025実績</th>
+          <th style="background:#c0392b;">2026修正</th>
+          <th>2027計画</th>
+          <th>2028計画</th>
+          <th>2029計画</th>
+          <th>2030目標</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="channel">三浦大根（JA）</td>
+          <td class="num">約2,100</td>
+          <td class="num">約2,200</td>
+          <td class="num">約2,500</td>
+          <td class="num neg">1,400</td>
+          <td class="num">1,800</td>
+          <td class="num">1,900</td>
+          <td class="num">2,000</td>
+          <td class="num">2,100</td>
+        </tr>
+        <tr>
+          <td class="channel">キャベツ（JA市場）</td>
+          <td class="num">約700</td>
+          <td class="num">約700</td>
+          <td class="num">約700</td>
+          <td class="num neg">700</td>
+          <td class="num">750</td>
+          <td class="num">750</td>
+          <td class="num">700</td>
+          <td class="num">700</td>
+        </tr>
+        <tr>
+          <td class="channel">キャベツ（コンテナ契約）</td>
+          <td class="num">約350</td>
+          <td class="num">約350</td>
+          <td class="num">約350</td>
+          <td class="num neg">250</td>
+          <td class="num">350</td>
+          <td class="num">450</td>
+          <td class="num">550</td>
+          <td class="num">650</td>
+        </tr>
+        <tr>
+          <td class="channel">冬ネギ（JA）</td>
+          <td class="num">約100</td>
+          <td class="num">約100</td>
+          <td class="num">約150</td>
+          <td class="num pos">200</td>
+          <td class="num pos">300</td>
+          <td class="num pos">400</td>
+          <td class="num pos">500</td>
+          <td class="num pos">600</td>
+        </tr>
+        <tr class="highlight">
+          <td class="channel">🍊 みかん（直売・体験）</td>
+          <td class="num">11</td>
+          <td class="num">約20</td>
+          <td class="num pos">233</td>
+          <td class="num pos">300</td>
+          <td class="num pos">450</td>
+          <td class="num pos">650</td>
+          <td class="num pos">800</td>
+          <td class="num pos">1,000</td>
+        </tr>
+        <tr class="highlight">
+          <td class="channel">🫐 ブルーベリー（直売・体験）</td>
+          <td class="num">—</td>
+          <td class="num">47</td>
+          <td class="num">35</td>
+          <td class="num pos">150</td>
+          <td class="num pos">250</td>
+          <td class="num pos">400</td>
+          <td class="num pos">550</td>
+          <td class="num pos">750</td>
+        </tr>
+        <tr>
+          <td class="channel">直売所・イベント</td>
+          <td class="num">—</td>
+          <td class="num">—</td>
+          <td class="num">50</td>
+          <td class="num">50</td>
+          <td class="num">150</td>
+          <td class="num">250</td>
+          <td class="num">350</td>
+          <td class="num">500</td>
+        </tr>
+        <tr class="warning">
+          <td class="channel">宅配EC（逆ざや）</td>
+          <td class="num">—</td>
+          <td class="num">—</td>
+          <td class="num neg">275</td>
+          <td class="num neg" style="color:#c0392b;">廃止</td>
+          <td class="num neutral">0</td>
+          <td class="num">50</td>
+          <td class="num">100</td>
+          <td class="num">200</td>
+        </tr>
+        <tr class="total">
+          <td class="channel">合計（万円）</td>
+          <td class="num">約3,124</td>
+          <td class="num">約3,360</td>
+          <td class="num">3,842</td>
+          <td class="num neg">3,250</td>
+          <td class="num">3,900</td>
+          <td class="num">4,500</td>
+          <td class="num">5,000</td>
+          <td class="num pos">5,700</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ブルーベリー詳細計画 -->
+  <div class="section">
+    <div class="section-title">🫐 ブルーベリー事業 単体5ヵ年計画</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align:left;">指標</th>
+          <th style="background:#555;">2024<br>（初年）</th>
+          <th style="background:#555;">2025<br>（2年目）</th>
+          <th style="background:#c0392b;">2026<br>（正念場）</th>
+          <th>2027</th>
+          <th>2028</th>
+          <th>2029</th>
+          <th>2030<br>（目標）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">来園者数（人）</td>
+          <td class="num">約300</td>
+          <td class="num">約230</td>
+          <td class="num pos">600</td>
+          <td class="num">1,000</td>
+          <td class="num">1,600</td>
+          <td class="num">2,200</td>
+          <td class="num pos">3,000</td>
+        </tr>
+        <tr>
+          <td class="label">客単価（円）</td>
+          <td class="num">1,567</td>
+          <td class="num">1,538</td>
+          <td class="num pos">2,500</td>
+          <td class="num">2,500</td>
+          <td class="num">2,500</td>
+          <td class="num">2,500</td>
+          <td class="num">2,500</td>
+        </tr>
+        <tr class="highlight">
+          <td class="label">売上（円）</td>
+          <td class="num">470,000</td>
+          <td class="num neg">353,800</td>
+          <td class="num pos">1,500,000</td>
+          <td class="num">2,500,000</td>
+          <td class="num">4,000,000</td>
+          <td class="num">5,500,000</td>
+          <td class="num pos">7,500,000</td>
+        </tr>
+        <tr>
+          <td class="label">媒体露出</td>
+          <td class="num neutral">0</td>
+          <td class="num neutral">0</td>
+          <td class="num pos">神奈川新聞<br>ごくネット</td>
+          <td class="num">SNS強化</td>
+          <td class="num">体験予約制</td>
+          <td class="num">法人契約</td>
+          <td class="num pos">定番観光地化</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="background:#faf0ff;border:1.5px solid #9333ea;border-radius:10px;padding:12px 16px;font-size:12px;color:#4a1f8a;line-height:1.8;margin-top:8px;">
+      <strong>🎯 2026年ブルーベリー正念場の突破ポイント：</strong><br>
+      ①神奈川新聞掲載（2026年6月）× ②ごくネット記事 → SNS拡散で集客倍増目標（230人→600人）<br>
+      ③アンケート実施（thesakube.com/survey）でリピーター化 ④客単価を1,538円→2,500円へ（摘み放題時間制 or パック販売セット強化）
+    </div>
+  </div>
+
+  <!-- リスク分析 -->
+  <div class="section">
+    <div class="section-title">⚠️ 経営リスク分析と対応策</div>
+
+    <div class="risk-grid">
+      <div class="risk-item high">
+        <span class="risk-tag">🔴 高リスク</span>
+        <div class="risk-title">大根市場相場リスク</div>
+        <div class="risk-desc">
+          2026年上半期に単価▲42%を経験。売上の約60%が相場依存。<br>
+          <strong>対策：</strong>コンテナ契約出荷を2025年比2倍（900→1,800箱）に拡大。直売比率を2030年までに50%超に引き上げる。
+        </div>
+      </div>
+      <div class="risk-item high">
+        <span class="risk-tag">🔴 高リスク</span>
+        <div class="risk-title">気象・病害リスク</div>
+        <div class="risk-desc">
+          2026年キャベツべと病で約32%廃棄。温暖化で頻度増加傾向。<br>
+          <strong>対策：</strong>耐病性品種への転換、防除暦の見直し、作型分散（露地→トンネル→ハウス）でリスク分散。
+        </div>
+      </div>
+      <div class="risk-item mid">
+        <span class="risk-tag">🟡 中リスク</span>
+        <div class="risk-title">資材費高騰リスク</div>
+        <div class="risk-desc">
+          段ボール・肥料等が5年前比+10%超。今後も上昇見込み。<br>
+          <strong>対策：</strong>JA共同購入活用、有機堆肥化で化成肥料依存度低減。
+        </div>
+      </div>
+      <div class="risk-item mid">
+        <span class="risk-tag">🟡 中リスク</span>
+        <div class="risk-title">労働力・後継者問題</div>
+        <div class="risk-desc">
+          農繁期の労働集中。高齢化リスク。<br>
+          <strong>対策：</strong>農業ヘルパー・研修生制度活用。体験農業で若い顧客との接点確保。
+        </div>
+      </div>
+      <div class="risk-item low">
+        <span class="risk-tag">🟢 低リスク</span>
+        <div class="risk-title">みかん・ブルーベリー需要</div>
+        <div class="risk-desc">
+          農業体験・食育ニーズは年々拡大。都市近郊農業として三浦の優位性高い。<br>
+          <strong>追い風：</strong>神奈川新聞・SNS露出で認知度急拡大中。
+        </div>
+      </div>
+      <div class="risk-item low">
+        <span class="risk-tag">🟢 低リスク</span>
+        <div class="risk-title">冬ネギ成長ポテンシャル</div>
+        <div class="risk-desc">
+          2026年上半期 +43%増（151→216箱）と好調。単価2,554円/箱と高値安定。<br>
+          <strong>機会：</strong>作付け面積拡大で安定した収益柱に育成可能。
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ========== PAGE 4: 投資計画・アクションプラン ========== -->
+<div class="page">
+
+  <div class="main-header">
+    <div class="doc-type">5ヵ年計画 実行計画</div>
+    <h1>🔧 投資・設備計画と年次アクションプラン</h1>
+  </div>
+
+  <!-- 投資計画 -->
+  <div class="section">
+    <div class="section-title">💰 設備投資・経営改善投資計画（5年間総額：約1,100万円）</div>
+
+    <div class="invest-grid">
+      <div class="invest-card">
+        <div class="ic-year">2026年</div>
+        <div class="ic-items">
+          ブルーベリー収穫網整備<br>
+          看板・サイン設置<br>
+          アンケートシステム<br>
+          SNS広告費
+        </div>
+        <div class="ic-total">計：80万円</div>
+      </div>
+      <div class="invest-card">
+        <div class="ic-year">2027年</div>
+        <div class="ic-items">
+          みかん園整備拡充<br>
+          直売所設備<br>
+          冬ネギ作付け拡大<br>
+          コンテナ増設
+        </div>
+        <div class="ic-total">計：200万円</div>
+      </div>
+      <div class="invest-card">
+        <div class="ic-year">2028年</div>
+        <div class="ic-items">
+          加工場・冷凍設備<br>
+          ブルーベリー棟増設<br>
+          農機具更新<br>
+          法人営業体制整備
+        </div>
+        <div class="ic-total">計：350万円</div>
+      </div>
+      <div class="invest-card">
+        <div class="ic-year">2029年</div>
+        <div class="ic-items">
+          体験農場ゾーン整備<br>
+          スタッフ採用<br>
+          DXシステム導入<br>
+          みかん第2園開拓
+        </div>
+        <div class="ic-total">計：280万円</div>
+      </div>
+      <div class="invest-card">
+        <div class="ic-year">2030年</div>
+        <div class="ic-items">
+          農泊施設検討<br>
+          認定農業者設備<br>
+          ブランド確立費<br>
+          予備・維持
+        </div>
+        <div class="ic-total">計：190万円</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 年次アクションプラン -->
+  <div class="section">
+    <div class="section-title">📋 年次別 重点アクションプラン</div>
+
+    <ul class="action-list">
+      <li>
+        <strong>2026年 緊急対応と正念場突破</strong>
+        ① 宅配EC廃止・直売シフトで荷造運賃ロス解消<br>
+        ② ブルーベリー：神奈川新聞露出×SNS活用で来園600人目標<br>
+        ③ みかん：直売体制強化、体験予約システム導入<br>
+        ④ 冬ネギ作付け面積+30%拡大（216箱→300箱）
+      </li>
+      <li>
+        <strong>2027年 収益構造の転換</strong>
+        ① コンテナ契約出荷を1,500箱以上に回復・拡大<br>
+        ② みかん体験：シーズンパス・家族プラン導入<br>
+        ③ ブルーベリー：摘み放題時間制×スイーツセット販売<br>
+        ④ 直売所常設化（農協直売所への定期出荷）
+      </li>
+      <li>
+        <strong>2028年 加工・B2B展開開始</strong>
+        ① ブルーベリージャム・冷凍パック加工販売開始<br>
+        ② みかんジュース・ドライフルーツ商品化<br>
+        ③ 学校・法人向け農業体験プログラム販売<br>
+        ④ 地域ブランド「三浦×作兵衛」確立
+      </li>
+      <li>
+        <strong>2029〜2030年 スケールアップ</strong>
+        ① 体験農場ゾーン完成・通年集客体制<br>
+        ② みかん第2園開拓（作付け2倍）<br>
+        ③ 農泊・グランピング検討開始<br>
+        ④ 認定農業者更新・補助金最大活用
+      </li>
+    </ul>
+  </div>
+
+  <!-- フェーズ別タイムライン -->
+  <div class="section">
+    <div class="section-title">🗓️ 3フェーズ 経営転換ロードマップ</div>
+
+    <div class="timeline-row">
+      <div class="tl-cell">フェーズ</div>
+      <div class="tl-cell phase-1">Phase 1<br><strong>嵐を越える</strong><br>2026年</div>
+      <div class="tl-cell phase-1">Phase 1<br><strong>再建・拡大</strong><br>2027年</div>
+      <div class="tl-cell phase-2">Phase 2<br><strong>複線化・加工</strong><br>2028年</div>
+      <div class="tl-cell phase-2">Phase 2<br><strong>収益最大化</strong><br>2029年</div>
+      <div class="tl-cell phase-3">Phase 3<br><strong>目標到達</strong><br>2030年</div>
+    </div>
+    <div class="timeline-row">
+      <div class="tl-cell">売上目標</div>
+      <div class="tl-cell phase-1"><strong>3,250万円</strong></div>
+      <div class="tl-cell phase-1"><strong>3,900万円</strong></div>
+      <div class="tl-cell phase-2"><strong>4,500万円</strong></div>
+      <div class="tl-cell phase-2"><strong>5,000万円</strong></div>
+      <div class="tl-cell phase-3"><strong>5,700万円</strong></div>
+    </div>
+    <div class="timeline-row">
+      <div class="tl-cell">農業所得</div>
+      <div class="tl-cell phase-1">▲50万</div>
+      <div class="tl-cell phase-1">+350万</div>
+      <div class="tl-cell phase-2">+600万</div>
+      <div class="tl-cell phase-2">+850万</div>
+      <div class="tl-cell phase-3"><strong>+1,100万</strong></div>
+    </div>
+    <div class="timeline-row">
+      <div class="tl-cell">主要施策</div>
+      <div class="tl-cell phase-1">宅配廃止<br>直売シフト<br>ベリー正念場</div>
+      <div class="tl-cell phase-1">コンテナ復活<br>みかん体験<br>ネギ拡大</div>
+      <div class="tl-cell phase-2">加工場設置<br>法人営業<br>体験充実</div>
+      <div class="tl-cell phase-2">みかん第2園<br>スタッフ採用<br>DX導入</div>
+      <div class="tl-cell phase-3">農泊検討<br>ブランド確立<br>認定更新</div>
+    </div>
+
+    <!-- 認定農業者 数値目標 -->
+    <div style="margin-top:16px;background:#e8f5e8;border:2px solid #2d7a3a;border-radius:12px;padding:16px 20px;">
+      <div style="font-size:14px;font-weight:bold;color:#1a4a2a;margin-bottom:10px;">📜 認定農業者申請 数値目標（農業経営改善計画 最終目標年：2030年）</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+        <div style="background:white;border-radius:8px;padding:10px;text-align:center;">
+          <div style="font-size:10px;color:#666;margin-bottom:4px;">農業粗収益</div>
+          <div style="font-size:18px;font-weight:900;color:#1a4a2a;">5,700万円</div>
+          <div style="font-size:10px;color:#2d7a3a;">（現状3,842万円比 +48%）</div>
+        </div>
+        <div style="background:white;border-radius:8px;padding:10px;text-align:center;">
+          <div style="font-size:10px;color:#666;margin-bottom:4px;">農業所得</div>
+          <div style="font-size:18px;font-weight:900;color:#1a4a2a;">1,100万円</div>
+          <div style="font-size:10px;color:#2d7a3a;">（現状360万円比 +3倍）</div>
+        </div>
+        <div style="background:white;border-radius:8px;padding:10px;text-align:center;">
+          <div style="font-size:10px;color:#666;margin-bottom:4px;">世帯所得</div>
+          <div style="font-size:18px;font-weight:900;color:#1a4a2a;">1,800万円</div>
+          <div style="font-size:10px;color:#2d7a3a;">（現状979万円比 +84%）</div>
+        </div>
+        <div style="background:white;border-radius:8px;padding:10px;text-align:center;">
+          <div style="font-size:10px;color:#666;margin-bottom:4px;">直売比率</div>
+          <div style="font-size:18px;font-weight:900;color:#1a4a2a;">50%超</div>
+          <div style="font-size:10px;color:#2d7a3a;">（現状15%未満→大幅改善）</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 承認欄 -->
+    <div class="approval-box">
+      <div class="approval-cell">
+        <div class="ac-label">申請者（本人）</div>
+        <div style="height:40px;"></div>
+        <div class="ac-sign">石井 孝太郎　　　　　　　　印</div>
+      </div>
+      <div class="approval-cell">
+        <div class="ac-label">担当農業委員 / JA担当者</div>
+        <div style="height:40px;"></div>
+        <div class="ac-sign">　　　　　　　　　　　　　　印</div>
+      </div>
+      <div class="approval-cell">
+        <div class="ac-label">三浦市農業委員会 確認</div>
+        <div style="height:40px;"></div>
+        <div class="ac-sign">　　　　　　　　　　　　　　印</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-footer">
+    <strong>ザ・作兵衛フルーツガーデン 農業経営改善計画認定申請書 附属資料</strong><br>
+    申請者：石井 孝太郎 / 組合員コード：N02058 / 神奈川県三浦市南下浦町菊名868 / TEL：046-888-0382 / www.thesakube.com<br>
+    本計画は三浦市農業協同組合提供データ（2023〜2026年）及び実績損益計算書に基づき作成。2026年6月現在。
+  </div>
+
+</div>
+
+</body>
+</html>
