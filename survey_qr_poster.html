@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>アンケート掲示用QRポスター</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Hiragino Sans', 'Meiryo', sans-serif;
+    background: #f0e8f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  .poster {
+    width: 400px;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(80,40,120,0.25);
+  }
+
+  /* ヘッダー */
+  .header {
+    background: linear-gradient(135deg, #3b0764, #7e22ce, #a855f7);
+    padding: 24px 20px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '🫐';
+    font-size: 180px;
+    position: absolute;
+    top: -40px; right: -30px;
+    opacity: 0.08;
+    line-height: 1;
+  }
+  .farm-name {
+    font-size: 11px;
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+  }
+  .main-title {
+    font-size: 26px;
+    font-weight: 900;
+    color: white;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+  .main-title em {
+    font-style: normal;
+    color: #e9d5ff;
+    font-size: 30px;
+  }
+  .sub-title {
+    font-size: 12px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.7;
+  }
+
+  /* ベリーライン */
+  .berry-line {
+    background: #faf5ff;
+    border-bottom: 2px dashed #d8b4fe;
+    padding: 10px;
+    text-align: center;
+    font-size: 22px;
+    letter-spacing: 6px;
+  }
+
+  .body { padding: 20px 22px; }
+
+  /* お願い文 */
+  .request {
+    text-align: center;
+    font-size: 14px;
+    color: #4a1f8a;
+    font-weight: bold;
+    line-height: 1.8;
+    margin-bottom: 18px;
+    background: #faf5ff;
+    border-radius: 12px;
+    padding: 12px;
+  }
+
+  /* 手順 */
+  .steps {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .step {
+    flex: 1;
+    text-align: center;
+    background: #f3e8ff;
+    border-radius: 10px;
+    padding: 8px 4px;
+  }
+  .step .num {
+    width: 22px; height: 22px;
+    background: #9333ea;
+    color: white;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: bold;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 4px;
+  }
+  .step .icon { font-size: 20px; margin-bottom: 3px; }
+  .step .text { font-size: 10px; color: #6b21a8; font-weight: bold; line-height: 1.3; }
+
+  /* QRコードエリア */
+  .qr-area {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .qr-label {
+    font-size: 12px;
+    color: #7e22ce;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .qr-frame {
+    display: inline-block;
+    background: white;
+    border: 4px solid #7e22ce;
+    border-radius: 16px;
+    padding: 14px;
+    box-shadow: 0 4px 20px rgba(126,34,206,0.2);
+    margin-bottom: 8px;
+    position: relative;
+  }
+  /* コーナー装飾 */
+  .qr-frame::before,
+  .qr-frame::after {
+    content: '🫐';
+    font-size: 16px;
+    position: absolute;
+    top: -12px;
+  }
+  .qr-frame::before { left: 8px; }
+  .qr-frame::after  { right: 8px; }
+
+  #qrcode canvas, #qrcode img { border-radius: 4px; }
+
+  .qr-url {
+    font-size: 11px;
+    color: #9ca3af;
+    letter-spacing: 0.5px;
+  }
+
+  /* 時間 */
+  .time-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #fef9c3;
+    border: 1.5px solid #facc15;
+    border-radius: 30px;
+    padding: 8px 16px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #854d0e;
+  }
+
+  /* 特典 */
+  .benefit {
+    background: linear-gradient(135deg, #fff7ed, #fef3c7);
+    border: 2.5px solid #f59e0b;
+    border-radius: 14px;
+    padding: 14px 16px;
+    text-align: center;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .benefit::before {
+    content: '🎁';
+    font-size: 28px;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .benefit .b-title {
+    font-size: 11px;
+    color: #d97706;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .benefit .b-main {
+    font-size: 16px;
+    font-weight: 900;
+    color: #92400e;
+    line-height: 1.5;
+  }
+  .benefit .b-note {
+    font-size: 10px;
+    color: #b45309;
+    margin-top: 4px;
+  }
+
+  /* フッター */
+  .footer {
+    background: linear-gradient(135deg, #3b0764, #7e22ce);
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+  }
+  .footer .f-name {
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+  .footer .f-info {
+    font-size: 10px;
+    opacity: 0.8;
+    line-height: 1.7;
+  }
+
+  @media print {
+    body { background: white; padding: 0; margin: 0; }
+    .poster {
+      box-shadow: none;
+      border-radius: 0;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="poster">
+
+  <div class="header">
+    <div class="farm-name">ザ・作兵衛フルーツガーデン</div>
+    <div class="main-title">
+      ご来園<br>
+      <em>ありがとう</em><br>
+      ございます🫐
+    </div>
+    <div class="sub-title">
+      今日の体験はいかがでしたか？<br>
+      ぜひ感想を聞かせてください！
+    </div>
+  </div>
+
+  <div class="berry-line">🫐 🫐 🫐 🫐 🫐</div>
+
+  <div class="body">
+
+    <div class="request">
+      農園をもっと良くするために<br>
+      <span style="color:#9333ea">アンケートへのご協力</span>をお願いします🙏
+    </div>
+
+    <!-- 手順 -->
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <div class="icon">📷</div>
+        <div class="text">カメラで<br>読み取り</div>
+      </div>
+      <div class="step" style="display:flex;align-items:center;justify-content:center;background:none;padding:0;flex:0 0 20px;">
+        <span style="font-size:18px;color:#a855f7;">→</span>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <div class="icon">📝</div>
+        <div class="text">アンケート<br>に回答</div>
+      </div>
+      <div class="step" style="display:flex;align-items:center;justify-content:center;background:none;padding:0;flex:0 0 20px;">
+        <span style="font-size:18px;color:#a855f7;">→</span>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <div class="icon">🎁</div>
+        <div class="text">クーポン<br>ゲット！</div>
+      </div>
+    </div>
+
+    <!-- QRコード -->
+    <div class="qr-area">
+      <div class="qr-label">📱 カメラをQRコードに向けてください</div>
+      <div class="qr-frame">
+        <div id="qrcode"></div>
+      </div>
+      <div class="qr-url">thesakube.com/survey</div>
+    </div>
+
+    <!-- 所要時間 -->
+    <div class="time-badge">
+      ⏱️ 所要時間：約&nbsp;<strong style="font-size:16px;color:#9333ea;">1〜2分</strong>&nbsp;だけ！
+    </div>
+
+    <!-- 特典 -->
+    <div class="benefit">
+      <div class="b-title">🎉 アンケート回答者限定</div>
+      <div class="b-main">
+        次回使える<br>
+        <span style="color:#d97706;font-size:20px;">割引クーポン</span><br>
+        プレゼント！
+      </div>
+      <div class="b-note">※スタッフにご提示ください</div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="f-name">🫐 ザ・作兵衛フルーツガーデン</div>
+    <div class="f-info">
+      三浦市南下浦町菊名868｜TEL 046-888-0382<br>
+      www.thesakube.com
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+  new QRCode(document.getElementById("qrcode"), {
+    text: "https://thesakube.com/survey",
+    width: 200,
+    height: 200,
+    colorDark: "#3b0764",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.H
+  });
+</script>
+</body>
+</html>
