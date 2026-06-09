@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>アンケートチラシ - ザ・作兵衛フルーツガーデン</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans JP', 'Hiragino Sans', 'Meiryo', sans-serif;
+    background: #f0e8f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  .flyer {
+    width: 420px;
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(80, 40, 120, 0.2);
+    position: relative;
+  }
+
+  /* ヘッダー */
+  .header {
+    background: linear-gradient(135deg, #4a1f8a, #7b3fc4, #a855f7);
+    padding: 28px 24px 22px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '🫐';
+    font-size: 120px;
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    opacity: 0.15;
+  }
+  .header::after {
+    content: '🫐';
+    font-size: 80px;
+    position: absolute;
+    bottom: -15px;
+    left: -10px;
+    opacity: 0.1;
+  }
+  .header .farm-name {
+    font-size: 11px;
+    color: rgba(255,255,255,0.8);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 900;
+    color: white;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .header h1 span {
+    color: #f0c4ff;
+  }
+  .header .subtitle {
+    font-size: 13px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.6;
+  }
+
+  /* ベリーアイコン装飾 */
+  .berries {
+    text-align: center;
+    font-size: 28px;
+    letter-spacing: 8px;
+    padding: 14px 0 10px;
+    background: #f9f4ff;
+    border-bottom: 2px dashed #d4b5f0;
+  }
+
+  /* メインコンテンツ */
+  .body {
+    padding: 22px 26px;
+  }
+
+  /* お願いボックス */
+  .request-box {
+    background: linear-gradient(135deg, #f3e8ff, #ede9fe);
+    border: 2px solid #a855f7;
+    border-radius: 16px;
+    padding: 18px 20px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .request-box .emoji { font-size: 32px; margin-bottom: 8px; }
+  .request-box p {
+    font-size: 14px;
+    color: #4a1f8a;
+    line-height: 1.8;
+    font-weight: bold;
+  }
+  .request-box .highlight {
+    background: #a855f7;
+    color: white;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    display: inline-block;
+    margin-top: 6px;
+  }
+
+  /* QRコードエリア */
+  .qr-section {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .qr-label {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 12px;
+    font-weight: bold;
+  }
+  .qr-wrapper {
+    display: inline-block;
+    padding: 16px;
+    background: white;
+    border: 3px solid #a855f7;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(168, 85, 247, 0.2);
+    margin-bottom: 10px;
+  }
+  #qrcode {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #qrcode canvas,
+  #qrcode img {
+    border-radius: 4px;
+  }
+  .qr-url {
+    font-size: 11px;
+    color: #888;
+    word-break: break-all;
+  }
+
+  /* 矢印 */
+  .arrow {
+    text-align: center;
+    font-size: 28px;
+    margin: 4px 0 12px;
+    color: #a855f7;
+  }
+
+  /* 所要時間 */
+  .time-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #fdf4ff;
+    border: 1.5px solid #e9d5ff;
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-bottom: 18px;
+  }
+  .time-box .icon { font-size: 22px; }
+  .time-box p {
+    font-size: 13px;
+    color: #6b21a8;
+    font-weight: bold;
+  }
+  .time-box p span {
+    font-size: 18px;
+    color: #a855f7;
+  }
+
+  /* 特典 */
+  .benefit-box {
+    background: linear-gradient(135deg, #fff7ed, #fef3c7);
+    border: 2px solid #f59e0b;
+    border-radius: 14px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .benefit-box .title {
+    font-size: 11px;
+    color: #d97706;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .benefit-box .content {
+    font-size: 15px;
+    font-weight: bold;
+    color: #92400e;
+    line-height: 1.6;
+  }
+  .benefit-box .note {
+    font-size: 10px;
+    color: #b45309;
+    margin-top: 4px;
+  }
+
+  /* アンケート項目 */
+  .items-section {
+    margin-bottom: 18px;
+  }
+  .items-title {
+    font-size: 12px;
+    color: #6b7280;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .items-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .item {
+    background: #f9f4ff;
+    border-radius: 10px;
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #4a1f8a;
+    font-weight: bold;
+  }
+  .item .dot {
+    width: 8px;
+    height: 8px;
+    background: #a855f7;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* フッター */
+  .footer {
+    background: linear-gradient(135deg, #4a1f8a, #7b3fc4);
+    color: white;
+    padding: 16px 24px;
+    text-align: center;
+  }
+  .footer .farm {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+  .footer .info {
+    font-size: 11px;
+    opacity: 0.85;
+    line-height: 1.7;
+  }
+
+  /* 印刷用 */
+  @media print {
+    body { background: white; padding: 0; }
+    .flyer {
+      box-shadow: none;
+      border-radius: 0;
+      width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="flyer">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="farm-name">ザ・作兵衛フルーツガーデン</div>
+    <h1>ご来園<span>ありがとう</span><br>ございます🫐</h1>
+    <div class="subtitle">ブルーベリー狩りを楽しんでいただけましたか？<br>ぜひ感想を聞かせてください！</div>
+  </div>
+
+  <!-- ベリー装飾 -->
+  <div class="berries">🫐 🫐 🫐 🫐 🫐</div>
+
+  <div class="body">
+
+    <!-- お願い -->
+    <div class="request-box">
+      <div class="emoji">📝</div>
+      <p>
+        より良い農園づくりのために<br>
+        アンケートへのご協力を<br>
+        お願いいたします。
+      </p>
+      <span class="highlight">所要時間：約1〜2分</span>
+    </div>
+
+    <!-- QRコード -->
+    <div class="qr-section">
+      <div class="qr-label">📱 下のQRコードを読み取ってください</div>
+      <div class="qr-wrapper">
+        <div id="qrcode"></div>
+      </div>
+      <div class="qr-url">thesakube.com/survey</div>
+    </div>
+
+    <!-- 矢印 -->
+    <div class="arrow">↑ カメラで読み取るだけ！</div>
+
+    <!-- 所要時間 -->
+    <div class="time-box">
+      <div class="icon">⏱️</div>
+      <p>たった <span>3問</span> の簡単アンケートです</p>
+    </div>
+
+    <!-- アンケート項目 -->
+    <div class="items-section">
+      <div class="items-title">📋 アンケートの内容（一部）</div>
+      <div class="items-grid">
+        <div class="item"><div class="dot"></div>味の満足度</div>
+        <div class="item"><div class="dot"></div>来園のきっかけ</div>
+        <div class="item"><div class="dot"></div>また来たいか</div>
+        <div class="item"><div class="dot"></div>改善してほしい点</div>
+      </div>
+    </div>
+
+    <!-- 特典 -->
+    <div class="benefit-box">
+      <div class="title">🎁 ご回答いただいた方へ</div>
+      <div class="content">
+        次回ご来園時に使える<br>
+        <strong>割引クーポン</strong>をプレゼント！
+      </div>
+      <div class="note">※スタッフにご提示ください</div>
+    </div>
+
+  </div>
+
+  <!-- フッター -->
+  <div class="footer">
+    <div class="farm">🫐 ザ・作兵衛フルーツガーデン</div>
+    <div class="info">
+      神奈川県三浦市南下浦町菊名868<br>
+      TEL : 046-888-0382｜www.thesakube.com
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // QRコード生成
+  new QRCode(document.getElementById("qrcode"), {
+    text: "https://thesakube.com/survey",
+    width: 160,
+    height: 160,
+    colorDark: "#4a1f8a",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.H
+  });
+</script>
+</body>
+</html>
