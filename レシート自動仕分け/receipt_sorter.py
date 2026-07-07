@@ -30,8 +30,40 @@ HOME = Path.home()
 BOX = HOME / "Desktop" / "レシート投函箱"          # 写真を入れる場所
 NEEDS_CHECK = BOX / "要確認"                        # 読み取りに自信がないもの
 NOT_RECEIPT = BOX / "対象外"                        # レシート以外の写真
-OUTPUT = HOME / "Desktop" / "領収書_整理済み"       # 仕分け後の保存先
 SCRIPT_DIR = Path(__file__).resolve().parent
+
+
+def find_google_drive() -> Path | None:
+    """Google Drive(パソコン版)の「マイドライブ」フォルダを探す。
+    見つからなければ None(= Google Drive未導入)"""
+    cloud = HOME / "Library" / "CloudStorage"
+    if cloud.exists():
+        for folder in sorted(cloud.iterdir()):
+            if folder.name.startswith("GoogleDrive-"):
+                for name in ("マイドライブ", "My Drive"):
+                    mydrive = folder / name
+                    if mydrive.exists():
+                        return mydrive
+    return None
+
+
+def decide_output_dir() -> Path:
+    """保存先を決める。Google Driveがあればその中、なければデスクトップ"""
+    gdrive = find_google_drive()
+    if gdrive:
+        out = gdrive / "領収書_整理済み"
+        print(f"☁️  保存先: Google Drive内(自動でクラウドに同期されます)")
+        print(f"   {out}\n")
+        return out
+    out = HOME / "Desktop" / "領収書_整理済み"
+    print("💻 保存先: デスクトップ(Google Driveアプリが見つかりませんでした)")
+    print("   クラウド同期したい場合は「Google Drive(パソコン版)」を")
+    print("   https://www.google.com/drive/download/ からインストールしてください。")
+    print("   インストール後は自動でGoogle Drive内に保存されるようになります。\n")
+    return out
+
+
+OUTPUT = None  # main()の最初で決定する
 API_KEY_FILE = SCRIPT_DIR / "APIキー.txt"
 
 # 対応する画像の種類
@@ -107,6 +139,36 @@ def ensure_folders():
     """必要なフォルダを作る(既にあれば何もしない)"""
     for folder in [BOX, NEEDS_CHECK, NOT_RECEIPT, OUTPUT]:
         folder.mkdir(parents=True, exist_ok=True)
+
+
+def migrate_old_output():
+    """以前デスクトップに保存した整理済みデータがあれば、
+    新しい保存先(Google Drive)へ引っ越しする(移動のみ・削除しない)"""
+    old = HOME / "Desktop" / "領収書_整理済み"
+    if OUTPUT == old or not old.exists():
+        return
+    moved = 0
+    for item in sorted(old.iterdir()):
+        if item.name.startswith("."):
+            continue
+        if item.is_dir():  # 月別フォルダ: 中の写真を1枚ずつ移す
+            for f in sorted(item.iterdir()):
+                if f.is_file() and not f.name.startswith("."):
+                    safe_move(f, OUTPUT / item.name)
+                    moved += 1
+            try:
+                item.rmdir()  # 空になったフォルダだけ片付ける
+            except OSError:
+                pass
+        elif item.is_file():  # CSV台帳など
+            safe_move(item, OUTPUT)
+            moved += 1
+    try:
+        old.rmdir()
+    except OSError:
+        pass
+    if moved:
+        print(f"📦 デスクトップの整理済みデータ {moved}件 を Google Drive へ引っ越しました\n")
 
 
 def to_jpeg_if_needed(path: Path) -> tuple[Path, bool]:
@@ -196,7 +258,10 @@ def valid_date(s) -> bool:
 
 
 def main():
+    global OUTPUT
+    OUTPUT = decide_output_dir()
     ensure_folders()
+    migrate_old_output()
 
     # 投函箱の直下にある画像だけを対象にする(要確認・対象外の中は触らない)
     images = sorted(
