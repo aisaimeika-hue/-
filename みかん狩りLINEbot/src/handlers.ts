@@ -18,6 +18,7 @@ const SEASON_START = "2026-10-15";
 const SEASON_END = "2026-11-30";
 const CLOSED_KEYWORDS = ["工事", "駐車場予約", "バス予約", "団体予約"];
 const DUTY_KEYWORDS = ["今日", "本日", "当番", "やって", "開い"];
+const FAQ_MENU_LABELS = ["期間", "料金", "駐車場", "ペット"];
 
 function isAdmin(env: Env, userId: string | undefined): boolean {
   if (!userId) return false;
@@ -86,6 +87,11 @@ export async function handleEvent(env: Env, event: LineEvent): Promise<void> {
 
   if (DUTY_KEYWORDS.some((k) => text.includes(k))) {
     await replyMessage(env, event.replyToken, await handleDutyInquiry(env));
+    return;
+  }
+
+  if (text === "よくある質問") {
+    await replyMessage(env, event.replyToken, "気になる項目をタップしてください。", FAQ_MENU_LABELS);
     return;
   }
 

@@ -18,7 +18,22 @@ export async function verifySignature(
   return expected === signature;
 }
 
-export async function replyMessage(env: Env, replyToken: string, text: string): Promise<void> {
+export async function replyMessage(
+  env: Env,
+  replyToken: string,
+  text: string,
+  quickReplyLabels?: string[],
+): Promise<void> {
+  const message: Record<string, unknown> = { type: "text", text };
+  if (quickReplyLabels?.length) {
+    message.quickReply = {
+      items: quickReplyLabels.map((label) => ({
+        type: "action",
+        action: { type: "message", label, text: label },
+      })),
+    };
+  }
+
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
     headers: {
@@ -27,7 +42,7 @@ export async function replyMessage(env: Env, replyToken: string, text: string): 
     },
     body: JSON.stringify({
       replyToken,
-      messages: [{ type: "text", text }],
+      messages: [message],
     }),
   });
 }
