@@ -63,22 +63,49 @@ async function renderHome(env: Env): Promise<string> {
 <section id="miryoku">
   <div class="section-inner">
     <h2 class="section-title">三浦のみかんが選ばれる理由</h2>
+    <p style="text-align:center; font-size:1.1rem; font-weight:700; color:#b8471f; margin-bottom:24px">
+      甘くて、酸っぱい。だから、濃い。
+    </p>
     <div class="appeal-grid">
       <div class="appeal-card">
         <div class="icon">🍊</div>
         <h3>酸味と甘みが濃い</h3>
-        <p>海が近く、ミネラル豊富な大地で育つ三浦のみかんは、皮が薄く、酸味と甘みのバランスがとれた"味の濃い"みかんです。</p>
+        <p>海が近く、たっぷりミネラルを含んだ肥沃な大地で育つ三浦のみかんは、皮が薄く、ちゃんと酸っぱくて、でも甘い。一言で表すなら"味が濃いみかん"です。</p>
+        <blockquote class="farmer-voice" style="margin-top:12px">「三浦のみかんは酸っぱくて、甘い。だから濃い」</blockquote>
       </div>
       <div class="appeal-card">
         <div class="icon">💎</div>
         <h3>市場に出回らない希少さ</h3>
-        <p>三浦のみかんの多くは地元消費とみかん狩りで消費され、市場にはほとんど出回りません。ここでしか味わえない味です。</p>
+        <p>三浦のみかんは市場に出回ることはなく、大半は地元で消費されるか、みかん狩りで消費されます。見た目よりも味にこだわることができ、どこの農園も農薬を極力減らして育てています。</p>
+        <blockquote class="farmer-voice" style="margin-top:12px">「フルーツはなにかと『甘さ』がもてはやされがちだけど、甘みと酸味のバランスがとれたものほど"味が濃い"と感じるんだよ」</blockquote>
       </div>
       <div class="appeal-card">
         <div class="icon">🤝</div>
         <h3>農家さんの力になる</h3>
-        <p>みかん狩りは摘果作業を手伝うことにもつながります。楽しみながら、高齢化が進む三浦の農家さんを応援できます。</p>
+        <p>みかん狩りは、実は間接的に「摘果(てきか)作業」を手伝っていることにもなります。楽しむことで農家さんの作業が減り、高齢化が進む三浦の農家さんを応援できます。</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="section-inner">
+    <h2 class="section-title">美味しいみかんの見分け方</h2>
+    <div class="card">
+      <p class="note" style="margin-top:0">農家さんに聞いた見分け方は三者三様。いくつかご紹介します。</p>
+      <ul class="tips-list">
+        <li>青いみかんより、色づいたみかんを摘むべし</li>
+        <li>ひっくり返って実っているみかんよりも、へたが上にあるみかんを選ぶべし</li>
+        <li>木ごとに味が違うので、好みの木を見つけるべし</li>
+        <li>高いところ・日当たりのいいところの方が美味しいという説は、農家さんの間でも意見が分かれる</li>
+      </ul>
+      <p class="note" style="margin-top:14px">
+        <strong>みかん狩りの鉄則はヘタの2度切り。</strong>まず枝からパチンと切り、さらにヘタをすれすれまで切り落とします。
+        そうしないと袋の中で他のみかんを傷つけ、早く傷んでしまう原因になります。
+      </p>
+      <p class="note" style="margin-top:10px">
+        お土産袋は、大小さまざまなサイズを入れるとたくさん入ります(入れすぎると破れるのでご注意を)。
+      </p>
     </div>
   </div>
 </section>
@@ -110,16 +137,16 @@ async function renderHome(env: Env): Promise<string> {
     <h2 class="section-title">アクセス</h2>
     <div class="access-grid">
       <div class="access-card">
-        <h3>🚗 車・自転車で</h3>
-        <p>駅やインターから少し離れた、知る人ぞ知る農園も。ゆったりみかん狩りを楽しめます。</p>
+        <h3>🚗 車・自転車で行く特別感</h3>
+        <p>駅やインターから離れた"知る人ぞ知る"農園に心踊る。喧騒を離れたみかん園で、家族や恋人、友人たちとゆったりみかん狩りを楽しめます。</p>
       </div>
       <div class="access-card">
-        <h3>🛣️ 高速インターすぐ</h3>
-        <p>三浦縦貫道の出口すぐの農園も複数あり。三崎港観光と組み合わせるのに便利です。</p>
+        <h3>🛣️ 高速インターすぐの便利さ</h3>
+        <p>車で三浦・三崎を訪れるなら、インター近くのみかん園が便利。早めに出てみかん狩りをしてから三崎港方面へ行くもよし、ランチの後に立ち寄るもよし。</p>
       </div>
       <div class="access-card">
         <h3>🚃 三浦海岸駅から徒歩圏内</h3>
-        <p>電車でお越しの方や、まぐろきっぷ利用の方におすすめ。駅前観光案内所で当番園をご案内しています。</p>
+        <p>まぐろきっぷ利用など、電車で三浦・三崎に遊びに来た方におすすめ。改札を出てすぐの観光案内所では、土日は担当者がおすすめの農園を、平日は当番の農園名をご案内しています。</p>
       </div>
     </div>
   </div>
@@ -135,6 +162,7 @@ async function renderHome(env: Env): Promise<string> {
 </section>
 
 <footer class="site-footer">
+  <p style="font-weight:700; color:#b8471f; font-size:0.95rem">「三浦に行ったら、みかん狩り」を合言葉に。短い旬を、ぜひ味わいに来てください。</p>
   <p>三浦市 みかん狩り組合 ／ シーズン: ${SEASON_START}〜${SEASON_END}(雨天休園、お越しの前にご確認ください)</p>
 </footer>
 `,

@@ -99,6 +99,17 @@ export function page(title: string, body: string, opts?: { wide?: boolean }): st
   .appeal-card h3 { margin: 8px 0 6px; font-size: 1rem; }
   .appeal-card p { margin: 0; font-size: 0.9rem; color: #4a3d2c; }
 
+  blockquote.farmer-voice {
+    margin: 0; padding: 14px 18px; background: #fbf1e2; border-left: 4px solid #f0954b;
+    border-radius: 0 10px 10px 0; font-size: 0.95rem; color: #4a3d2c; font-style: italic;
+  }
+  .tips-list { list-style: none; padding: 0; margin: 0; }
+  .tips-list li {
+    padding: 10px 0 10px 28px; border-bottom: 1px solid #e3d6bb; position: relative; font-size: 0.9rem;
+  }
+  .tips-list li::before { content: "🍊"; position: absolute; left: 0; }
+  .tips-list li:last-child { border-bottom: none; }
+
   table.price { width: 100%; border-collapse: collapse; background: #fffdf8; border-radius: 10px; overflow: hidden; }
   table.price th, table.price td { padding: 10px 12px; border-bottom: 1px solid #e3d6bb; text-align: left; font-size: 0.9rem; }
   table.price th { background: #f0954b; color: #fff; }
