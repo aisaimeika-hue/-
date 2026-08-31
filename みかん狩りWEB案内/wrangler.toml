@@ -1,10 +1,9 @@
-name = "mikangari-line-bot"
+name = "mikangari-web"
 main = "src/index.ts"
 compatibility_date = "2024-11-01"
 
 [vars]
 NOTION_DUTY_DATA_SOURCE_ID = "1145e85d-edf7-46cd-8ee5-92f9820dc862"
-NOTION_LINE_REGISTRY_DATA_SOURCE_ID = "85297037-5d6c-4421-acb3-ecf4a1f8ef41"
 NOTION_CLOSURE_LOG_DATA_SOURCE_ID = "680da058-e473-4f7b-b33c-f01aca34b1cc"
 NOTION_FAQ_DATA_SOURCE_ID = "b7a8136f-6011-4daf-b871-3f2a1b3d9854"
-ADMIN_USER_IDS = ""
+ADMIN_KEY = ""

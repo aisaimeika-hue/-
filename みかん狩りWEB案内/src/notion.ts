@@ -39,31 +39,6 @@ export async function getTodayDuty(env: Env): Promise<{ kubun: string; orchard: 
   };
 }
 
-export async function lookupOrchardByUserId(env: Env, userId: string): Promise<string | null> {
-  const results = await queryDataSource(env, env.NOTION_LINE_REGISTRY_DATA_SOURCE_ID, {
-    property: "LINE_userId",
-    rich_text: { equals: userId },
-  });
-  if (results.length === 0) return null;
-  const title = results[0].properties["園名"]?.title;
-  return title?.[0]?.plain_text ?? null;
-}
-
-export async function registerOrchardUserId(env: Env, orchardName: string, userId: string): Promise<void> {
-  await fetch("https://api.notion.com/v1/pages", {
-    method: "POST",
-    headers: notionHeaders(env),
-    body: JSON.stringify({
-      parent: { type: "data_source_id", data_source_id: env.NOTION_LINE_REGISTRY_DATA_SOURCE_ID },
-      properties: {
-        "園名": { title: [{ text: { content: orchardName } }] },
-        "LINE_userId": { rich_text: [{ text: { content: userId } }] },
-        "登録日時": { date: { start: new Date().toISOString() } },
-      },
-    }),
-  });
-}
-
 export async function logClosure(env: Env, orchardName: string): Promise<void> {
   const dateIso = todayIsoJst();
   await fetch("https://api.notion.com/v1/pages", {
@@ -90,17 +65,18 @@ export async function getTodayClosures(env: Env): Promise<string[]> {
   return results.map((r) => r.properties["園名"]?.select?.name).filter(Boolean);
 }
 
-export async function findFaqAnswer(env: Env, text: string): Promise<string | null> {
+export interface FaqEntry {
+  question: string;
+  answer: string;
+}
+
+export async function getActiveFaqs(env: Env): Promise<FaqEntry[]> {
   const results = await queryDataSource(env, env.NOTION_FAQ_DATA_SOURCE_ID, {
     property: "有効",
     checkbox: { equals: true },
   });
-  for (const r of results) {
-    const keywordText: string = r.properties["質問キーワード"]?.title?.[0]?.plain_text ?? "";
-    const keywords = keywordText.split(",").map((k) => k.trim()).filter(Boolean);
-    if (keywords.some((k) => text.includes(k))) {
-      return r.properties["回答"]?.rich_text?.[0]?.plain_text ?? null;
-    }
-  }
-  return null;
+  return results.map((r) => ({
+    question: r.properties["質問キーワード"]?.title?.[0]?.plain_text ?? "",
+    answer: r.properties["回答"]?.rich_text?.[0]?.plain_text ?? "",
+  }));
 }
