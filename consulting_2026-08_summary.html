@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>経営コンサル ミーティングメモ（2026年8月）</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Hiragino Sans', 'Meiryo', sans-serif;
+    background: #f0f4f8;
+    padding: 24px 16px;
+    color: #333;
+    line-height: 1.7;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; }
+  .header {
+    background: linear-gradient(135deg, #1a3a5c, #2e6da4);
+    color: white;
+    padding: 26px 28px;
+    border-radius: 16px 16px 0 0;
+    text-align: center;
+  }
+  .header .sub { font-size: 12px; opacity: .8; letter-spacing: 1px; margin-bottom: 6px; }
+  .header h1 { font-size: 22px; margin-bottom: 6px; }
+  .header .date { font-size: 13px; opacity: .85; }
+
+  .card {
+    background: white;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    padding: 24px 28px 30px;
+  }
+
+  .section { margin-top: 26px; }
+  .section:first-child { margin-top: 0; }
+  .section-title {
+    font-size: 15px;
+    font-weight: bold;
+    color: #1a3a5c;
+    padding-left: 10px;
+    border-left: 4px solid #2e6da4;
+    margin-bottom: 12px;
+  }
+  .section p, .section li { font-size: 13.5px; color: #444; }
+  .section ul { padding-left: 20px; margin-top: 6px; }
+  .section li { margin-bottom: 4px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin-top: 8px; }
+  th, td { border: 1px solid #dbe3ea; padding: 7px 8px; text-align: left; }
+  th { background: #eff6ff; color: #1e40af; font-weight: bold; }
+  td.num { text-align: right; white-space: nowrap; }
+  tr:nth-child(even) td { background: #f8fafc; }
+
+  .highlight-box {
+    background: #fffbeb;
+    border: 1.5px solid #f59e0b;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-top: 10px;
+    font-size: 13px;
+    color: #92400e;
+  }
+  .good-box {
+    background: #f0fdf4;
+    border: 1.5px solid #22c55e;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-top: 10px;
+    font-size: 13px;
+    color: #166534;
+  }
+  .warn-box {
+    background: #fff5f5;
+    border: 1.5px solid #e74c3c;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-top: 10px;
+    font-size: 13px;
+    color: #991b1b;
+  }
+
+  .scenario-grid { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+  .scenario {
+    flex: 1;
+    min-width: 200px;
+    border-radius: 12px;
+    padding: 14px;
+    border: 1.5px solid #cbd5e1;
+    background: #f8fafc;
+  }
+  .scenario .tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: bold;
+    color: white;
+    background: #64748b;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-bottom: 6px;
+  }
+  .scenario.mid .tag { background: #3b82f6; }
+  .scenario.big .tag { background: #22c55e; }
+  .scenario h3 { font-size: 13.5px; margin-bottom: 6px; color: #1a3a5c; }
+  .scenario p { font-size: 12px; color: #555; }
+
+  .todo-box {
+    background: #f8fafc;
+    border: 1.5px dashed #94a3b8;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-top: 10px;
+  }
+  .todo-box li { list-style: none; margin-bottom: 8px; padding-left: 22px; position: relative; }
+  .todo-box li::before { content: '☐'; position: absolute; left: 0; color: #2e6da4; }
+
+  .next-meeting {
+    margin-top: 26px;
+    background: #1a3a5c;
+    color: white;
+    border-radius: 12px;
+    padding: 16px 20px;
+    text-align: center;
+    font-size: 14px;
+  }
+  .next-meeting strong { font-size: 16px; }
+
+  .footer {
+    text-align: center;
+    font-size: 11px;
+    color: #94a3b8;
+    margin-top: 18px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div class="sub">ザ・作兵衛フルーツガーデン</div>
+    <h1>経営コンサル ミーティングメモ</h1>
+    <div class="date">2026年8月度セッション</div>
+  </div>
+
+  <div class="card">
+
+    <!-- 品目別収支 -->
+    <div class="section">
+      <div class="section-title">① 品目別の収支状況（限界利益・損益分岐点）</div>
+      <p>限界利益率（＝価格決定力の強さ）は大根が最も低く、みかん・ブルーベリーは高い。ただし経常利益ベースでは大根が稼ぎ頭、ブルーベリーは収支マイナスという逆転が起きている。</p>
+      <table>
+        <tr><th>品目</th><th>限界利益率</th><th>経常利益への貢献</th><th>備考</th></tr>
+        <tr><td>大根</td><td class="num">約69%</td><td>プラス（稼ぎ頭）</td><td>相場変動が非常に大きい（年によって売上が半分近くに）</td></tr>
+        <tr><td>みかん</td><td class="num">約93%</td><td>約12.5%</td><td>観光農園。固定費はほぼ回収済み</td></tr>
+        <tr><td>ブルーベリー</td><td class="num">約93%</td><td>マイナス</td><td>損益分岐点販売額 244万円（現状売上約100万円）</td></tr>
+      </table>
+      <div class="highlight-box">
+        労務費の按分を見直し中。株（かぶ）の出荷は委託が多いため、これまで計上していた人件費700万円を実態に近い350万円へ修正 → 差額を大根・メロン・キャベツ等へ再配分する見込み。
+      </div>
+    </div>
+
+    <!-- 大根のボラティリティ -->
+    <div class="section">
+      <div class="section-title">② 大根の相場変動リスク</div>
+      <p>2024年は大根単体で約1,200万円（豊作）だったが、2025年は約1,000万円、2026年は約600万円と大きく変動。数量はほぼ変わらないため、相場（単価）のブレが直接収支に響く構造。</p>
+      <div class="warn-box">
+        「三浦の旧来型（大根中心・外国人労働者頼み）を突き詰める先に良い未来が見えない」という所感あり。ボラティリティの高い品目に依存し続けるリスクを課題視。
+      </div>
+    </div>
+
+    <!-- ブルーベリー -->
+    <div class="section">
+      <div class="section-title">③ ブルーベリー観光農園の位置づけ</div>
+      <ul>
+        <li>現状：来園者数 約550人／客単価 約900〜1,000円</li>
+        <li>損益分岐点：244万円相当＝おおよそ1,200人規模</li>
+        <li>中期目標：来年 700〜800人 → 2年後 1,200人（近隣同業者の実績2,500人を参考値として言及）</li>
+        <li>減価償却費（栽培システム等）はキャッシュアウトしないため、体感の資金繰りは帳簿上の赤字ほど厳しくない</li>
+        <li>みかん狩りとの比較：みかんは認知度が高く広告不要で集客できるが、ブルーベリーはまだ「マイナー」で広告投資が必須</li>
+        <li>相互送客効果：ブルーベリー来園者の一部がみかん狩りにも訪問。スイカ直売との相乗効果で客単価・来店頻度が向上（例：スイカ単体購入2,500円 → 家族連れでブルーベリー込み1万円規模へ）</li>
+      </ul>
+      <div class="good-box">
+        面積の制約上「一気に倍」にする拡張は難しいが、収穫期間を延ばす栽培上の工夫で客数を増やす余地はある、という方向性で一致。単体で+10万円黒字化できればメロンの収支を相殺できる可能性。
+      </div>
+    </div>
+
+    <!-- 3つの経営シナリオ -->
+    <div class="section">
+      <div class="section-title">④ 中長期の経営シナリオ（3案）</div>
+      <div class="scenario-grid">
+        <div class="scenario">
+          <span class="tag">現状維持</span>
+          <h3>家族貢献重視シナリオ</h3>
+          <p>家族のみでの経営を継続。売上上限はおおよそ5,000万円程度が目安。</p>
+        </div>
+        <div class="scenario big">
+          <span class="tag">規模拡大</span>
+          <h3>地域貢献重視シナリオ</h3>
+          <p>耕作放棄地の活用等で面積・雇用を拡大。従業員に権限委譲する中核人材が必要。売上規模は億単位を想定。</p>
+        </div>
+        <div class="scenario mid">
+          <span class="tag">検討中の本命</span>
+          <h3>季節ハイブリッド型</h3>
+          <p>5〜11月はB2C（観光農園・直売）、11〜5月は出荷中心という年間サイクルを確立するモデル。イチゴ狩り新規参入は労働時間の奪い合いが大きく一旦凍結。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 従業員雇用と目標数値 -->
+    <div class="section">
+      <div class="section-title">⑤ 正社員1名雇用のための目標数値</div>
+      <p>人件費370万円（住居費込み）を確保しつつ利益700万円を維持しようとすると、現状の費用構造から逆算した必要売上高は概算で<strong>7,800万〜8,000万円程度</strong>という試算が出た（現状の経常利益率 約9%で計算）。</p>
+      <div class="highlight-box">
+        「業務委託・パラレルワーク型」（時給1,500円、月30万円程度を独立事業者として支払う形）で経験者・新規就農志望者を受け入れる案も検討。学びの場（訓練施設的な機能）としての可能性も話題に。
+      </div>
+    </div>
+
+    <!-- 経営理念 -->
+    <div class="section">
+      <div class="section-title">⑥ ミッション・ビジョン・バリュー（今回言語化された部分）</div>
+      <ul>
+        <li><strong>ミッション：</strong>お客様に近い農業をする</li>
+        <li><strong>ビジョン：</strong>フルーツ・農業を通じて関わる人（お客様・スタッフ・自分）がみんな時間的にも金銭的にも「豊かで自由」であること</li>
+        <li><strong>価値観：</strong>子どもの頃の「大変そう・かっこよくない農業」のイメージを逆転させたい／スタッフの人生（金融教育含む）にも良い変化を生み出したい</li>
+      </ul>
+      <p>単純な売上・利益の最大化（大根拡大＋外国人労働者依存モデル）よりも、この理念に沿った「季節ハイブリッド型」の方向性が合っている、という認識で一致。</p>
+    </div>
+
+    <!-- 未決・宿題 -->
+    <div class="section">
+      <div class="section-title">⑦ 未決事項・次回までの宿題</div>
+      <div class="todo-box">
+        <ul>
+          <li>コンサル側：品目別収支・労務費按分の修正版データをExcelで送付</li>
+          <li>コンサル側：季節ハイブリッド型シナリオを中心に、次回向けに複数パターンの提案を用意</li>
+          <li>両者：「なぜ7,800万円を目指すのか」という目的・動機の言語化を継続（家族の豊かさ／地域貢献／理念の実現、のバランス）</li>
+          <li>今回のコンサル期間内で「経営全体のギャップ」を見るか「ブルーベリー単体のギャップ」を見るか、焦点の絞り込みが未決</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="next-meeting">
+      次回ミーティング：<strong>9月16日（水）13:30〜</strong>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    ※本メモは打ち合わせの音声記録をもとに要点を整理したものです。数字は打ち合わせ中の概算・体感ベースのものを含みます。
+  </div>
+
+</div>
+</body>
+</html>
