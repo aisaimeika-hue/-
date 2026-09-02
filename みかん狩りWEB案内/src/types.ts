@@ -4,6 +4,7 @@ export interface Env {
   NOTION_CLOSURE_LOG_DATA_SOURCE_ID: string;
   NOTION_FAQ_DATA_SOURCE_ID: string;
   ADMIN_KEY: string;
+  ASSETS: Fetcher;
 }
 
 export interface Orchard {
@@ -13,6 +14,7 @@ export interface Orchard {
   address: string;
   phone: string;
   website?: string;
+  photo?: string;
 }
 
 export const ORCHARDS: Orchard[] = [
@@ -43,6 +45,7 @@ export const ORCHARDS: Orchard[] = [
     catch: "三浦最大級の広さ。入口には十月桜、奥には京急線が走るロケーション。",
     address: "三浦市南下浦町上宮田1020",
     phone: "046-888-1102",
+    photo: "/images/yoshida-booth.jpg",
   },
   {
     slug: "ishii",

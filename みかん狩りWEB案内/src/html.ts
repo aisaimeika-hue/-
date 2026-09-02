@@ -61,6 +61,13 @@ export function page(title: string, body: string, opts?: { wide?: boolean }): st
       radial-gradient(circle at 85% 20%, #fff 0, transparent 10%),
       radial-gradient(circle at 50% 80%, #fff 0, transparent 16%);
   }
+  .hero .photo-bg {
+    position: absolute; inset: 0; background-size: cover; background-position: center;
+  }
+  .hero .photo-bg::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(160deg, rgba(224,122,48,0.82) 0%, rgba(184,71,31,0.78) 100%);
+  }
   .hero .inner { position: relative; }
   .hero .emoji { font-size: 2.6rem; }
   .hero h1 { font-size: 1.9rem; color: #fff; margin: 8px 0 6px; }
@@ -81,8 +88,16 @@ export function page(title: string, body: string, opts?: { wide?: boolean }): st
     background: linear-gradient(135deg, #f6ead2 0%, #efd9b0 100%);
     display: flex; align-items: center; justify-content: center;
     color: #b89a68; font-size: 0.75rem; flex-direction: column; gap: 6px;
+    overflow: hidden;
   }
   .photo-box .big { font-size: 1.8rem; }
+  .photo-box img { width: 100%; height: 100%; object-fit: cover; }
+
+  .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+  .gallery-item { border-radius: 12px; overflow: hidden; aspect-ratio: 4 / 3; }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .tips-photo { border-radius: 12px; overflow: hidden; margin: 16px 0; aspect-ratio: 3 / 2; max-width: 480px; }
+  .tips-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   section { padding: 40px 0; }
   section.alt { background: #f3ead9; }

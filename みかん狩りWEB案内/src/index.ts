@@ -27,7 +27,7 @@ async function renderHome(env: Env): Promise<string> {
   const orchardCards = ORCHARDS.map(
     (o) => `
     <div class="orchard-card">
-      <div class="photo-box"><span class="big">🍊</span><span>写真準備中</span></div>
+      <div class="photo-box">${o.photo ? `<img src="${o.photo}" alt="${o.name}" loading="lazy">` : `<span class="big">🍊</span><span>写真準備中</span>`}</div>
       <h3>${o.name}</h3>
       <p class="catch">${o.catch}</p>
       <p class="meta">${o.address}</p>
@@ -51,7 +51,7 @@ async function renderHome(env: Env): Promise<string> {
 </nav>
 
 <div class="hero">
-  <div class="photo-placeholder"></div>
+  <div class="photo-bg" style="background-image:url('/images/hero-train.jpg')"></div>
   <div class="inner">
     <div class="emoji">🍊</div>
     <h1>三浦市 みかん狩り</h1>
@@ -103,6 +103,7 @@ async function renderHome(env: Env): Promise<string> {
         <strong>みかん狩りの鉄則はヘタの2度切り。</strong>まず枝からパチンと切り、さらにヘタをすれすれまで切り落とします。
         そうしないと袋の中で他のみかんを傷つけ、早く傷んでしまう原因になります。
       </p>
+      <div class="tips-photo"><img src="/images/tips-nidogiri.jpg" alt="ヘタの2度切りの様子" loading="lazy"></div>
       <p class="note" style="margin-top:10px">
         お土産袋は、大小さまざまなサイズを入れるとたくさん入ります(入れすぎると破れるのでご注意を)。
       </p>
@@ -149,6 +150,24 @@ async function renderHome(env: Env): Promise<string> {
         <p>まぐろきっぷ利用など、電車で三浦・三崎に遊びに来た方におすすめ。改札を出てすぐの観光案内所では、土日は担当者がおすすめの農園を、平日は当番の農園名をご案内しています。</p>
       </div>
     </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-inner">
+    <h2 class="section-title">写真で見る、みかん狩りの様子</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item"><img src="/images/gallery-jacket.jpg" alt="農園主さんの出迎え" loading="lazy"></div>
+      <div class="gallery-item"><img src="/images/gallery-peel.jpg" alt="採れたてみかんを味わう" loading="lazy"></div>
+      <div class="gallery-item"><img src="/images/gallery-branch.jpg" alt="たわわに実ったみかん" loading="lazy"></div>
+      <div class="gallery-item"><img src="/images/gallery-path.jpg" alt="のどかな園内の小道" loading="lazy"></div>
+      <div class="gallery-item"><img src="/images/gallery-shop.jpg" alt="直売所のようす" loading="lazy"></div>
+      <div class="gallery-item"><img src="/images/gallery-juice.jpg" alt="自家製ジュース・シロップの直売" loading="lazy"></div>
+      <div class="gallery-item"><img src="/images/gallery-family-dog.jpg" alt="ワンちゃんと一緒にみかん狩り" loading="lazy"></div>
+      <div class="gallery-item"><img src="/images/gallery-shibainu.jpg" alt="農園で出会える柴犬" loading="lazy"></div>
+      <div class="gallery-item"><img src="/images/gallery-jacket-back.jpg" alt="「三浦」の法被姿の農家さん" loading="lazy"></div>
+    </div>
+    <p class="note" style="margin-top:14px; text-align:center">写真:goooone.help「三浦のみかん狩り」記事より</p>
   </div>
 </section>
 

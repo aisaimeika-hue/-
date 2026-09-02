@@ -2,6 +2,10 @@ name = "mikangari-web"
 main = "src/index.ts"
 compatibility_date = "2024-11-01"
 
+[assets]
+directory = "./public"
+binding = "ASSETS"
+
 [vars]
 NOTION_DUTY_DATA_SOURCE_ID = "1145e85d-edf7-46cd-8ee5-92f9820dc862"
 NOTION_CLOSURE_LOG_DATA_SOURCE_ID = "680da058-e473-4f7b-b33c-f01aca34b1cc"
