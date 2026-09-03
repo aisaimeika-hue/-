@@ -137,9 +137,12 @@ export function page(title: string, body: string, opts?: { wide?: boolean }): st
   .orchard-card .meta { color: #6c5c48; }
   .orchard-card a { color: #b8471f; }
 
-  .access-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
-  .access-card { background: #fffdf8; border: 1px solid #e3d6bb; border-radius: 14px; padding: 18px; }
-  .access-card h3 { margin: 0 0 8px; font-size: 1rem; }
+  .access-group { margin-bottom: 36px; }
+  .access-group:last-child { margin-bottom: 0; }
+  .access-group .group-title {
+    font-size: 1.05rem; font-weight: 800; color: #b8471f; margin: 0 0 6px;
+    border-left: 4px solid #b8471f; padding-left: 10px;
+  }
 
   footer.site-footer { text-align: center; color: #6c5c48; font-size: 0.8rem; padding: 32px 16px 0; }
 </style>

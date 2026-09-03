@@ -6,6 +6,27 @@ import { getTodayDuty, logClosure, getTodayClosures, getActiveFaqs } from "./not
 const SEASON_START = "2026-10-15";
 const SEASON_END = "2026-11-30";
 
+const ACCESS_GROUPS = [
+  {
+    icon: "🚗",
+    title: "車・自転車で行く、特別感あるみかん園(3選)",
+    note: `駅やインターから少し離れた分、静かで"知る人ぞ知る"雰囲気。家族や恋人、友人たちとゆったりみかん狩りを楽しみたい方に。`,
+    slugs: ["iijima", "ishii", "shimoto"],
+  },
+  {
+    icon: "🛣️",
+    title: "高速インターすぐの便利なみかん農園(2選)",
+    note: "車で三浦・三崎を訪れるなら、インター近くのみかん園が便利。早めに出てみかん狩りをしてから三崎港方面へ行くもよし、ランチの後に立ち寄るもよし。",
+    slugs: ["shindo", "maruyu"],
+  },
+  {
+    icon: "🚃",
+    title: "三浦海岸駅から徒歩圏内のみかん園",
+    note: "まぐろきっぷ利用など、電車で三浦・三崎に遊びに来た方におすすめ。改札を出てすぐの観光案内所では、土日は担当者がおすすめの農園を、平日は当番の農園名をご案内しています。",
+    slugs: ["okayasu", "okumoto", "yamasa", "yoshida"],
+  },
+];
+
 async function renderDutyBanner(env: Env): Promise<string> {
   const duty = await getTodayDuty(env);
   if (!duty) {
@@ -24,8 +45,7 @@ async function renderHome(env: Env): Promise<string> {
     .map((f) => `<details><summary>${f.question.split(",")[0]}</summary><p>${f.answer}</p></details>`)
     .join("\n");
 
-  const orchardCards = ORCHARDS.map(
-    (o) => `
+  const renderOrchardCard = (o: (typeof ORCHARDS)[number]) => `
     <div class="orchard-card">
       <div class="photo-box">${o.photo ? `<img src="${o.photo}" alt="${o.name}" loading="lazy">` : `<span class="big">🍊</span><span>写真準備中</span>`}</div>
       <h3>${o.name}</h3>
@@ -33,8 +53,19 @@ async function renderHome(env: Env): Promise<string> {
       <p class="meta">${o.address}</p>
       <p class="meta">TEL: ${o.phone}</p>
       ${o.website ? `<p style="margin-top:10px"><a class="pill-btn" style="font-size:0.75rem;padding:8px 18px" href="${o.website}" target="_blank" rel="noopener">公式サイトを見る</a></p>` : ""}
-    </div>`,
-  ).join("\n");
+    </div>`;
+
+  const accessGroupsHtml = ACCESS_GROUPS.map((group) => {
+    const cards = group.slugs.map((slug) => ORCHARDS.find((o) => o.slug === slug)).filter(Boolean) as typeof ORCHARDS;
+    return `
+    <div class="access-group">
+      <h3 class="group-title">${group.icon} ${group.title}</h3>
+      <p class="note" style="margin-bottom:16px">${group.note}</p>
+      <div class="orchard-grid">
+        ${cards.map(renderOrchardCard).join("\n")}
+      </div>
+    </div>`;
+  }).join("\n");
 
   return page(
     "三浦市 みかん狩り",
@@ -44,8 +75,7 @@ async function renderHome(env: Env): Promise<string> {
   <div class="links">
     <a href="#miryoku">みかんの魅力</a>
     <a href="#ryokin">料金</a>
-    <a href="#en-ichiran">園一覧</a>
-    <a href="#access">アクセス</a>
+    <a href="#en-ichiran">園一覧・アクセス</a>
     <a href="#faq">FAQ</a>
   </div>
 </nav>
@@ -126,30 +156,8 @@ async function renderHome(env: Env): Promise<string> {
 
 <section id="en-ichiran">
   <div class="section-inner">
-    <h2 class="section-title">みかん園一覧(9園)</h2>
-    <div class="orchard-grid">
-      ${orchardCards}
-    </div>
-  </div>
-</section>
-
-<section class="alt" id="access">
-  <div class="section-inner">
-    <h2 class="section-title">アクセス</h2>
-    <div class="access-grid">
-      <div class="access-card">
-        <h3>🚗 車・自転車で行く特別感</h3>
-        <p>駅やインターから離れた"知る人ぞ知る"農園に心踊る。喧騒を離れたみかん園で、家族や恋人、友人たちとゆったりみかん狩りを楽しめます。</p>
-      </div>
-      <div class="access-card">
-        <h3>🛣️ 高速インターすぐの便利さ</h3>
-        <p>車で三浦・三崎を訪れるなら、インター近くのみかん園が便利。早めに出てみかん狩りをしてから三崎港方面へ行くもよし、ランチの後に立ち寄るもよし。</p>
-      </div>
-      <div class="access-card">
-        <h3>🚃 三浦海岸駅から徒歩圏内</h3>
-        <p>まぐろきっぷ利用など、電車で三浦・三崎に遊びに来た方におすすめ。改札を出てすぐの観光案内所では、土日は担当者がおすすめの農園を、平日は当番の農園名をご案内しています。</p>
-      </div>
-    </div>
+    <h2 class="section-title">みかん園一覧・行き方で選ぶ(9園)</h2>
+    ${accessGroupsHtml}
   </div>
 </section>
 
