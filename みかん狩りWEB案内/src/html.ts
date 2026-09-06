@@ -51,7 +51,7 @@ export function page(title: string, body: string, opts?: { wide?: boolean }): st
 
   .hero {
     position: relative; overflow: hidden;
-    min-height: clamp(340px, 46vw, 560px);
+    min-height: clamp(420px, 62vw, 760px);
     display: flex; align-items: flex-end; justify-content: center;
     color: #fff; padding: 28px 16px; text-align: center; margin-bottom: 0;
   }
