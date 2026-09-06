@@ -72,10 +72,11 @@ export const ORCHARDS: Orchard[] = [
   {
     slug: "iijima",
     name: "飯島みかん園",
-    catch: "遠くに房総半島と青い海を望む。野性味あふれるみかんが自慢。",
+    catch: "遠くに望む青い海、房総半島……気持ちの良い風が吹き抜けます。螺旋状に坂を降りていけば、四方八方にたわわに実ったみかんの木が。",
     address: "三浦市南下浦町金田634",
     phone: "080-5548-8654",
     photo: "/images/orchard-iijima.jpg",
+    quote: "1日中、子供と走り回って遊んでいく人も多い農園です。野性味溢れるみかんを楽しんでいってください",
   },
   {
     slug: "shindo",
