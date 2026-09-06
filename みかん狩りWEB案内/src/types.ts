@@ -91,10 +91,11 @@ export const ORCHARDS: Orchard[] = [
   {
     slug: "maruyu",
     name: "長澤マルユみかん園",
-    catch: "坂を登ると相模湾や富士山を一望。園内は平坦で、誰でも安全に楽しめる。",
+    catch: "こちらも三浦縦貫道(林出口)を降りてすぐ行けるみかん園。車を停め、ゆるやかな坂を登っていくと、一気に風景が開けます。振り返れば、畑越しに相模湾や富士山を一望。",
     address: "三浦市初声町和田2771",
     phone: "046-888-1523",
     website: "https://www.nagasawamaruyu-mikan.com",
     photo: "/images/orchard-maruyu.jpg",
+    quote: "園内は平坦で誰もが安全にみかん狩りを楽しむことができます。お客様に『美味しいね』と言ってもらえるのを励みに、心をこめてみかんを育てています",
   },
 ];
