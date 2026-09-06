@@ -24,6 +24,7 @@ export const ORCHARDS: Orchard[] = [
     catch: "太陽のような笑顔で出迎え。減農薬で育て、直売所には朝採り野菜も並ぶ。",
     address: "三浦市南下浦町上宮田2103",
     phone: "046-888-0895",
+    photo: "/images/orchard-okumoto.jpg",
   },
   {
     slug: "yamasa",
@@ -31,6 +32,7 @@ export const ORCHARDS: Orchard[] = [
     catch: "リゾートホテル「マホロバマインズ三浦」目の前。三浦海岸駅からも近い立地。",
     address: "三浦市南下浦町上宮田3377",
     phone: "080-5087-1583",
+    photo: "/images/orchard-yamasa.jpg",
   },
   {
     slug: "okayasu",
@@ -38,6 +40,7 @@ export const ORCHARDS: Orchard[] = [
     catch: "公園の目の前。大型バスも駐車可能。直売所では朝採り野菜も購入できる。",
     address: "三浦市南下浦町上宮田925",
     phone: "046-888-0954",
+    photo: "/images/orchard-okayasu.jpg",
   },
   {
     slug: "yoshida",
@@ -54,6 +57,7 @@ export const ORCHARDS: Orchard[] = [
     address: "三浦市南下浦町菊名614",
     phone: "046-888-0382",
     website: "http://www.thesakube.com/",
+    photo: "/images/orchard-ishii.jpg",
   },
   {
     slug: "shimoto",
@@ -61,6 +65,7 @@ export const ORCHARDS: Orchard[] = [
     catch: "坂を登り切った先に現れる、公園のような趣の農園。低い木も多く子ども連れに人気。",
     address: "三浦市南下浦町菊名281",
     phone: "090-9512-3505",
+    photo: "/images/orchard-shimoto.jpg",
   },
   {
     slug: "iijima",
@@ -68,6 +73,7 @@ export const ORCHARDS: Orchard[] = [
     catch: "遠くに房総半島と青い海を望む。野性味あふれるみかんが自慢。",
     address: "三浦市南下浦町金田634",
     phone: "080-5548-8654",
+    photo: "/images/orchard-iijima.jpg",
   },
   {
     slug: "shindo",
@@ -75,6 +81,7 @@ export const ORCHARDS: Orchard[] = [
     catch: "三浦縦貫道(三崎港方面出口)すぐ。背の低い木が多く、小さなお子様連れにも安心。",
     address: "三浦市初声町和田923",
     phone: "046-888-2550",
+    photo: "/images/orchard-shindo.jpg",
   },
   {
     slug: "maruyu",
@@ -83,5 +90,6 @@ export const ORCHARDS: Orchard[] = [
     address: "三浦市初声町和田2771",
     phone: "046-888-1523",
     website: "https://www.nagasawamaruyu-mikan.com",
+    photo: "/images/orchard-maruyu.jpg",
   },
 ];
