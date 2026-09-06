@@ -165,13 +165,15 @@ async function renderHome(env: Env): Promise<string> {
   <div class="section-inner">
     <h2 class="section-title">写真で見る、みかん狩りの様子</h2>
     <div class="gallery-grid">
-      <div class="gallery-item"><img src="/images/gallery-jacket.jpg" alt="飯島みかん園の農家さん" loading="lazy"></div>
+      <div class="gallery-item"><img src="/images/gallery-iijima-view.jpg" alt="飯島みかん園から望む景色" loading="lazy"></div>
+      <div class="gallery-item"><img src="/images/gallery-ishii-juice.jpg" alt="石井みかん園、自家製ジュース・シロップ" loading="lazy"></div>
       <div class="gallery-item"><img src="/images/gallery-peel.jpg" alt="岡安みかん園、採れたてを味わう" loading="lazy"></div>
+      <div class="gallery-item"><img src="/images/gallery-okayasu-view.jpg" alt="岡安みかん園の園内" loading="lazy"></div>
+      <div class="gallery-item"><img src="/images/gallery-shimoto-path.jpg" alt="しもとみかん園の小道" loading="lazy"></div>
       <div class="gallery-item"><img src="/images/gallery-branch.jpg" alt="早摘みのみかん" loading="lazy"></div>
       <div class="gallery-item"><img src="/images/gallery-path.jpg" alt="石井みかん園の園内" loading="lazy"></div>
       <div class="gallery-item"><img src="/images/gallery-shop.jpg" alt="長澤マルユみかん園の直売所" loading="lazy"></div>
       <div class="gallery-item"><img src="/images/gallery-bag.jpg" alt="三浦みかん狩りのお土産袋" loading="lazy"></div>
-      <div class="gallery-item"><img src="/images/gallery-family-dog.jpg" alt="ヤマサみかん園、ワンちゃんと一緒に" loading="lazy"></div>
       <div class="gallery-item"><img src="/images/gallery-shibainu.jpg" alt="ヤマサみかん園で出会える柴犬" loading="lazy"></div>
       <div class="gallery-item"><img src="/images/gallery-jacket-back.jpg" alt="進藤みかん園の農家さん" loading="lazy"></div>
     </div>
