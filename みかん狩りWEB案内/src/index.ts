@@ -35,7 +35,7 @@ async function renderDutyBanner(env: Env): Promise<string> {
   if (duty.kubun === "土日(全園開園)") {
     return `<p>土日祝日は基本的に全園開園です(雨天のみ当番園が担当)</p><div class="duty-orchard">本日の雨天時当番: ${duty.orchard}</div>`;
   }
-  return `<p>本日の当番園は</p><div class="duty-orchard">${duty.orchard}</div><p class="note" style="color:#ffe6cf">平日は当番以外の園はお休みの園もありますので、行く際は直接確認して下さい。</p>`;
+  return `<p>本日の当番園は</p><div class="duty-orchard">${duty.orchard}</div><p class="note" style="color:#ffe6cf">平日は当番園が担当のため基本的に営業しています(荒天時は休園)。その他の園も営業している場合がありますが、行く際は各農園に直接お問い合わせください。</p>`;
 }
 
 async function renderHome(env: Env): Promise<string> {
