@@ -15,6 +15,7 @@ export interface Orchard {
   phone: string;
   website?: string;
   photo?: string;
+  quote?: string;
 }
 
 export const ORCHARDS: Orchard[] = [
@@ -53,11 +54,12 @@ export const ORCHARDS: Orchard[] = [
   {
     slug: "ishii",
     name: "石井みかん園",
-    catch: "地元民から厚い信頼を集める清潔感のある農園。自家製シロップ・ジュースも直売。",
+    catch: "しっかり手入れの行き届いた清潔感のあるみかん園で、はじけるような笑顔で出迎えてくれます。",
     address: "三浦市南下浦町菊名614",
     phone: "046-888-0382",
     website: "http://www.thesakube.com/",
     photo: "/images/orchard-ishii.jpg",
+    quote: `来てくれたお客様を喜ばせたい、その一心です。農家にとって一番の喜びである"収穫"を、一緒に分かちあえたらと思います`,
   },
   {
     slug: "shimoto",

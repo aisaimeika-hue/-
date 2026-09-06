@@ -50,6 +50,7 @@ async function renderHome(env: Env): Promise<string> {
       <div class="photo-box">${o.photo ? `<img src="${o.photo}" alt="${o.name}" loading="lazy">` : `<span class="big">🍊</span><span>写真準備中</span>`}</div>
       <h3>${o.name}</h3>
       <p class="catch">${o.catch}</p>
+      ${o.quote ? `<blockquote class="farmer-voice" style="margin:10px 0">「${o.quote}」</blockquote>` : ""}
       <p class="meta">${o.address}</p>
       <p class="meta">TEL: ${o.phone}</p>
       ${o.website ? `<p style="margin-top:10px"><a class="pill-btn" style="font-size:0.75rem;padding:8px 18px" href="${o.website}" target="_blank" rel="noopener">公式サイトを見る</a></p>` : ""}
