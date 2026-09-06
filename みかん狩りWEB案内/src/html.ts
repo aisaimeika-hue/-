@@ -51,30 +51,26 @@ export function page(title: string, body: string, opts?: { wide?: boolean }): st
 
   .hero {
     position: relative; overflow: hidden;
-    background: linear-gradient(160deg, #f0954b 0%, #e07a30 100%);
-    color: #fff; padding: 56px 16px; text-align: center; margin-bottom: 0;
-  }
-  .hero .photo-placeholder {
-    position: absolute; inset: 0; opacity: 0.18;
-    background:
-      radial-gradient(circle at 15% 25%, #fff 0, transparent 12%),
-      radial-gradient(circle at 85% 20%, #fff 0, transparent 10%),
-      radial-gradient(circle at 50% 80%, #fff 0, transparent 16%);
+    min-height: clamp(340px, 46vw, 560px);
+    display: flex; align-items: flex-end; justify-content: center;
+    color: #fff; padding: 28px 16px; text-align: center; margin-bottom: 0;
   }
   .hero .photo-bg {
     position: absolute; inset: 0; background-size: cover; background-position: center;
   }
   .hero .photo-bg::after {
     content: ""; position: absolute; inset: 0;
-    background: linear-gradient(160deg, rgba(224,122,48,0.82) 0%, rgba(184,71,31,0.78) 100%);
+    background: linear-gradient(to top, rgba(20,14,8,0.72) 0%, rgba(20,14,8,0.25) 38%, transparent 65%);
   }
   .hero .inner { position: relative; }
-  .hero .emoji { font-size: 2.6rem; }
-  .hero h1 { font-size: 1.9rem; color: #fff; margin: 8px 0 6px; }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  }
   .hero .sub { color: #ffe6cf; font-size: 1rem; margin-bottom: 18px; }
   .hero .duty-banner {
     display: inline-block; background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.4);
-    border-radius: 16px; padding: 14px 22px; margin-top: 4px;
+    border-radius: 16px; padding: 14px 22px; margin-top: 4px; backdrop-filter: blur(2px);
   }
   .hero .duty-banner .duty-orchard { color: #fff; }
 

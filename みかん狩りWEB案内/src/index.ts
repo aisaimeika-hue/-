@@ -81,10 +81,9 @@ async function renderHome(env: Env): Promise<string> {
 </nav>
 
 <div class="hero">
-  <div class="photo-bg" style="background-image:url('/images/hero-train.jpg')"></div>
+  <div class="photo-bg" style="background-image:url('/images/hero-top.jpg')"></div>
   <div class="inner">
-    <div class="emoji">🍊</div>
-    <h1>三浦市 みかん狩り</h1>
+    <h1 class="sr-only">三浦市 みかん狩り</h1>
     <p class="sub">${SEASON_START}〜${SEASON_END}(雨天休園)</p>
     <div class="duty-banner">${dutyHtml}</div>
   </div>
@@ -176,6 +175,7 @@ async function renderHome(env: Env): Promise<string> {
       <div class="gallery-item"><img src="/images/gallery-bag.jpg" alt="三浦みかん狩りのお土産袋" loading="lazy"></div>
       <div class="gallery-item"><img src="/images/gallery-shibainu.jpg" alt="ヤマサみかん園で出会える柴犬" loading="lazy"></div>
       <div class="gallery-item"><img src="/images/gallery-jacket-back.jpg" alt="進藤みかん園の農家さん" loading="lazy"></div>
+      <div class="gallery-item"><img src="/images/gallery-train.jpg" alt="京急線沿いのみかん園" loading="lazy"></div>
     </div>
     <p class="note" style="margin-top:14px; text-align:center">写真:goooone.help「三浦のみかん狩り」記事より</p>
   </div>
