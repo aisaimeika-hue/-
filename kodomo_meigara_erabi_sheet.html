@@ -47,17 +47,18 @@
   .q-sub { font-size:11px; color:#777; margin-bottom:10px; margin-left:34px; }
 
   .card-row { display:flex; gap:10px; margin-bottom:8px; }
+  .card-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:8px; }
   .card {
-    flex:1; border:2px solid #cfe0cf; border-radius:10px; padding:10px 12px;
+    flex:1; border:2px solid #cfe0cf; border-radius:10px; padding:8px 10px;
     position:relative;
   }
   .card .box {
-    width:20px; height:20px; border:2.5px solid #1a4a2a; border-radius:5px;
-    position:absolute; top:10px; right:10px;
+    width:18px; height:18px; border:2.5px solid #1a4a2a; border-radius:5px;
+    position:absolute; top:8px; right:8px;
   }
-  .card .code { font-size:9.5px; color:#888; }
-  .card .name { font-size:13px; font-weight:900; color:#1a4a2a; margin:2px 0 5px; padding-right:26px; }
-  .card .desc { font-size:10.5px; color:#444; line-height:1.6; }
+  .card .code { font-size:9px; color:#888; }
+  .card .name { font-size:12px; font-weight:900; color:#1a4a2a; margin:2px 0 4px; padding-right:24px; }
+  .card .desc { font-size:9.5px; color:#444; line-height:1.5; }
 
   .free-card {
     border:2px dashed #999; border-radius:10px; padding:10px 12px; font-size:11px; color:#555;
@@ -139,7 +140,19 @@
   <!-- Q3 別業種 -->
   <div class="q-title"><span class="q-num">3</span>自分が好きな会社（7.5万円ぶん）— 好きなものに◯、または自分で書く</div>
   <div class="q-sub">配当があって、自分が「知ってる・好き」と思える会社を選んでOK</div>
-  <div class="card-row">
+  <div class="card-grid">
+    <div class="card">
+      <div class="box"></div>
+      <div class="code">証券コード 2914</div>
+      <div class="name">JT（日本たばこ産業）</div>
+      <div class="desc">たばこ会社。高配当で有名。じいじの間接的お小遣い枠。</div>
+    </div>
+    <div class="card">
+      <div class="box"></div>
+      <div class="code">証券コード 2003</div>
+      <div class="name">日東富士製粉</div>
+      <div class="desc">小麦粉・パン材料などの食品会社。堅実な配当株。</div>
+    </div>
     <div class="card">
       <div class="box"></div>
       <div class="code">証券コード 7203</div>
@@ -158,8 +171,6 @@
       <div class="name">伊藤ハム米久HLDGS</div>
       <div class="desc">ハム・ソーセージの食品会社。食卓でおなじみのブランド。</div>
     </div>
-  </div>
-  <div class="card-row">
     <div class="card">
       <div class="box"></div>
       <div class="code">証券コード 9882</div>
@@ -177,6 +188,18 @@
       <div class="code">証券コード 9769</div>
       <div class="name">学究社</div>
       <div class="desc">学習塾(湘南ゼミナール)を運営。学生に一番身近な会社かも。</div>
+    </div>
+    <div class="card">
+      <div class="box"></div>
+      <div class="code">証券コード 9984</div>
+      <div class="name">ソフトバンクグループ</div>
+      <div class="desc">誰もが知ってる名前。世界の様々な企業に投資する会社。</div>
+    </div>
+    <div class="card">
+      <div class="box"></div>
+      <div class="code">証券コード 8591</div>
+      <div class="name">オリックス</div>
+      <div class="desc">プロ野球オリックス・バファローズのオーナー企業。多角経営。</div>
     </div>
   </div>
   <div class="free-card">
