@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>投資銘柄えらびシート</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:'Noto Sans JP','Hiragino Sans','Meiryo',sans-serif;
+    background:#f0f4f0;
+    padding:20px;
+    color:#1a2a1a;
+  }
+  .page {
+    width:794px; /* A4横幅相当(96dpi) */
+    min-height:1000px;
+    margin:0 auto 24px;
+    background:white;
+    border-radius:14px;
+    padding:30px 36px;
+    box-shadow:0 8px 32px rgba(0,0,0,0.12);
+  }
+  .head { text-align:center; margin-bottom:14px; border-bottom:4px solid #2d7a3a; padding-bottom:12px; }
+  .head h1 { font-size:24px; color:#1a4a2a; font-weight:900; margin-bottom:6px; }
+  .head p { font-size:12px; color:#555; }
+
+  .name-row { display:flex; gap:16px; align-items:center; margin:16px 0 20px; font-size:14px; }
+  .name-row .blank { flex:1; border-bottom:2px solid #1a4a2a; height:26px; }
+  .name-row label { font-weight:bold; color:#1a4a2a; white-space:nowrap; }
+
+  .fixed-box {
+    background:#eff6ff; border:2px solid #3b82f6; border-radius:10px;
+    padding:10px 16px; margin-bottom:18px; font-size:12.5px; color:#1e3a5f;
+  }
+  .fixed-box strong { color:#1d4ed8; }
+
+  .q-title {
+    font-size:15px; font-weight:900; color:#1a4a2a; margin:20px 0 4px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .q-num {
+    width:26px; height:26px; border-radius:50%; background:#2d7a3a; color:white;
+    display:flex; align-items:center; justify-content:center; font-size:13px; flex:0 0 auto;
+  }
+  .q-sub { font-size:11px; color:#777; margin-bottom:10px; margin-left:34px; }
+
+  .card-row { display:flex; gap:10px; margin-bottom:8px; }
+  .card {
+    flex:1; border:2px solid #cfe0cf; border-radius:10px; padding:10px 12px;
+    position:relative;
+  }
+  .card .box {
+    width:20px; height:20px; border:2.5px solid #1a4a2a; border-radius:5px;
+    position:absolute; top:10px; right:10px;
+  }
+  .card .code { font-size:9.5px; color:#888; }
+  .card .name { font-size:13px; font-weight:900; color:#1a4a2a; margin:2px 0 5px; padding-right:26px; }
+  .card .desc { font-size:10.5px; color:#444; line-height:1.6; }
+  .card.warn { border-color:#e74c3c; background:#fff8f8; }
+  .card.warn .note { font-size:9.5px; color:#c0392b; font-weight:bold; margin-top:5px; }
+
+  .free-card {
+    border:2px dashed #999; border-radius:10px; padding:10px 12px; font-size:11px; color:#555;
+  }
+  .free-card .line { border-bottom:1.5px solid #999; height:22px; margin-top:6px; }
+
+  .foot-row { display:flex; gap:20px; margin-top:26px; padding-top:14px; border-top:2px dashed #ccc; font-size:11.5px; }
+  .foot-row .f-item { flex:1; }
+  .foot-row .blank2 { border-bottom:1.5px solid #1a4a2a; height:22px; margin-top:6px; }
+
+  .doc-footer { text-align:center; font-size:9.5px; color:#888; margin-top:18px; }
+
+  @media print {
+    body { background:white; padding:0; }
+    .page { box-shadow:none; border-radius:0; width:100%; min-height:0; page-break-after:always; }
+    .page:last-child { page-break-after:auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="head">
+    <h1>🌱 投資銘柄えらびシート</h1>
+    <p>おじいちゃんからの100万円、30万円ぶんの「自分の株」を選ぼう！</p>
+  </div>
+
+  <div class="name-row">
+    <label>なまえ：</label><div class="blank"></div>
+    <label>日付：</label><div class="blank" style="flex:0 0 140px;"></div>
+  </div>
+
+  <div class="fixed-box">
+    生活インフラ枠は <strong>KDDI（9433・7.5万円）</strong> に決定済みです。下の3つを選んでね。
+  </div>
+
+  <!-- Q1 商社 -->
+  <div class="q-title"><span class="q-num">1</span>世界で稼ぐ商社（7.5万円ぶん）— どちらか1社に◯</div>
+  <div class="q-sub">総合商社＝いろんな業界の会社と世界中で取引する「なんでも屋さん」</div>
+  <div class="card-row">
+    <div class="card">
+      <div class="box"></div>
+      <div class="code">証券コード 8058</div>
+      <div class="name">三菱商事</div>
+      <div class="desc">日本最大手の総合商社。資源・食品・機械など幅広く展開。配当利回りが高めなのが魅力。</div>
+    </div>
+    <div class="card">
+      <div class="box"></div>
+      <div class="code">証券コード 8053</div>
+      <div class="name">住友商事</div>
+      <div class="desc">総合商社の大手。金属・生活産業・メディア事業など幅広く展開。こちらも配当利回りが高め。</div>
+    </div>
+  </div>
+
+  <!-- Q2 金融 -->
+  <div class="q-title"><span class="q-num">2</span>金融の会社（7.5万円ぶん）— どれか1社に◯</div>
+  <div class="q-sub">お金や保険を扱う会社＝景気が良くなると強い業界</div>
+  <div class="card-row">
+    <div class="card">
+      <div class="box"></div>
+      <div class="code">証券コード 8593</div>
+      <div class="name">三菱HCキャピタル</div>
+      <div class="desc">リース・ファイナンスの会社。長年配当を増やし続けていることで有名。</div>
+    </div>
+    <div class="card">
+      <div class="box"></div>
+      <div class="code">証券コード 8306</div>
+      <div class="name">三菱UFJ</div>
+      <div class="desc">日本最大手の銀行グループ。誰もが知っている安定感のある会社。</div>
+    </div>
+    <div class="card warn">
+      <div class="box"></div>
+      <div class="code">証券コード 8766</div>
+      <div class="name">東京海上HD</div>
+      <div class="desc">損害保険の最大手。2026年10月に株式分割予定で、その前後で株価の見方が変わる。</div>
+      <div class="note">⚠ これを選んだらママに一声かけてね（買うタイミングの確認が必要）</div>
+    </div>
+  </div>
+
+  <!-- Q3 別業種 -->
+  <div class="q-title"><span class="q-num">3</span>自分が好きな会社（7.5万円ぶん）— 好きなものに◯、または自分で書く</div>
+  <div class="q-sub">配当があって、自分が「知ってる・好き」と思える会社を選んでOK</div>
+  <div class="card-row">
+    <div class="card">
+      <div class="box"></div>
+      <div class="code">証券コード 2914</div>
+      <div class="name">JT（日本たばこ産業）</div>
+      <div class="desc">たばこ会社。配当利回りがとても高いことで有名。</div>
+    </div>
+    <div class="card">
+      <div class="box"></div>
+      <div class="code">証券コード 9873</div>
+      <div class="name">日本KFC-HD</div>
+      <div class="desc">ケンタッキーフライドチキンを運営する会社。</div>
+    </div>
+    <div class="card">
+      <div class="box"></div>
+      <div class="code">証券コード 2003</div>
+      <div class="name">日東富士製粉</div>
+      <div class="desc">小麦粉・パン材料などの食品会社。堅実な配当株。</div>
+    </div>
+  </div>
+  <div class="card-row">
+    <div class="card">
+      <div class="box"></div>
+      <div class="code">例：7974／9697／7832</div>
+      <div class="name">ゲーム会社（任天堂・カプコン・バンダイナムコ など）</div>
+      <div class="desc">好きなゲームを作っている会社を自分で選んでOK。配当は少なめな会社が多いよ。</div>
+    </div>
+    <div class="free-card">
+      <div>その他、自分で気になる会社があれば↓に書いてね</div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+  </div>
+
+  <div class="foot-row">
+    <div class="f-item">えらんだ理由をひとことメモ<div class="blank2"></div></div>
+  </div>
+
+  <div class="doc-footer">
+    ※ このシートは家族で相談しながら選ぶための下書きです。実際の購入前に大人が証券アプリで最新の株価を確認します。
+  </div>
+</div>
+
+</body>
+</html>
