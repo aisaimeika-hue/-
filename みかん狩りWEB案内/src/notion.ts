@@ -20,22 +20,45 @@ async function queryDataSource(env: Env, dataSourceId: string, filter?: unknown)
   return data.results ?? [];
 }
 
-function todayIsoJst(): string {
-  const now = new Date(Date.now() + 9 * 60 * 60 * 1000);
+function isoJstOffset(days: number): string {
+  const now = new Date(Date.now() + 9 * 60 * 60 * 1000 + days * 24 * 60 * 60 * 1000);
   return now.toISOString().slice(0, 10);
 }
 
-export async function getTodayDuty(env: Env): Promise<{ kubun: string; orchard: string } | null> {
-  const dateIso = todayIsoJst();
+function todayIsoJst(): string {
+  return isoJstOffset(0);
+}
+
+export interface DutyEntry {
+  date: string;
+  kubun: string;
+  orchard: string;
+}
+
+export async function getDutyRange(env: Env): Promise<{ yesterday: DutyEntry | null; today: DutyEntry | null; tomorrow: DutyEntry | null }> {
+  const yesterdayIso = isoJstOffset(-1);
+  const todayIso = isoJstOffset(0);
+  const tomorrowIso = isoJstOffset(1);
   const results = await queryDataSource(env, env.NOTION_DUTY_DATA_SOURCE_ID, {
-    property: "日付",
-    date: { equals: dateIso },
+    and: [
+      { property: "日付", date: { on_or_after: yesterdayIso } },
+      { property: "日付", date: { on_or_before: tomorrowIso } },
+    ],
   });
-  if (results.length === 0) return null;
-  const props = results[0].properties;
+  const byDate = new Map<string, DutyEntry>();
+  for (const r of results) {
+    const dateIso: string | undefined = r.properties["日付"]?.date?.start?.slice(0, 10);
+    if (!dateIso) continue;
+    byDate.set(dateIso, {
+      date: dateIso,
+      kubun: r.properties["区分"]?.select?.name ?? "",
+      orchard: r.properties["当番園"]?.select?.name ?? "未定",
+    });
+  }
   return {
-    kubun: props["区分"]?.select?.name ?? "",
-    orchard: props["当番園"]?.select?.name ?? "未定",
+    yesterday: byDate.get(yesterdayIso) ?? null,
+    today: byDate.get(todayIso) ?? null,
+    tomorrow: byDate.get(tomorrowIso) ?? null,
   };
 }
 

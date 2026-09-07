@@ -1,7 +1,7 @@
 import type { Env } from "./types";
 import { ORCHARDS } from "./types";
 import { page } from "./html";
-import { getTodayDuty, logClosure, getTodayClosures, getActiveFaqs } from "./notion";
+import { getDutyRange, logClosure, getTodayClosures, getActiveFaqs, type DutyEntry } from "./notion";
 
 const SEASON_START = "2026-10-15";
 const SEASON_END = "2026-11-30";
@@ -27,19 +27,63 @@ const ACCESS_GROUPS = [
   },
 ];
 
-async function renderDutyBanner(env: Env): Promise<string> {
-  const duty = await getTodayDuty(env);
-  if (!duty) {
-    return `<p>只今はみかん狩りシーズン期間外です。シーズンは${SEASON_START}〜${SEASON_END}です。</p>`;
+function formatDayLabel(iso: string): string {
+  const [y, m, d] = iso.split("-").map(Number);
+  const dt = new Date(Date.UTC(y, m - 1, d));
+  const week = ["日", "月", "火", "水", "木", "金", "土"][dt.getUTCDay()];
+  return `${m}/${d}(${week})`;
+}
+
+function renderDutyCard(label: string, entry: DutyEntry | null, highlight: boolean): string {
+  const cls = `toban-card${highlight ? " today" : ""}`;
+  if (!entry) {
+    return `<div class="${cls}"><div class="day-label">${label}</div><div class="orchard-name">シーズン外</div></div>`;
   }
-  if (duty.kubun === "土日(全園開園)") {
-    return `<p>土日祝日は基本的に全園開園です(雨天のみ当番園が担当)</p><div class="duty-orchard">本日の雨天時当番: ${duty.orchard}</div>`;
+  const dateLabel = formatDayLabel(entry.date);
+  if (entry.kubun === "土日(全園開園)") {
+    return `<div class="${cls}">
+      <div class="day-label">${label} ${dateLabel}</div>
+      <div class="orchard-name">全園営業</div>
+      <div class="sub-note">雨天時当番: ${entry.orchard}</div>
+    </div>`;
   }
-  return `<p>本日の当番園は</p><div class="duty-orchard">${duty.orchard}</div><p class="note" style="color:#ffe6cf">平日は当番園が営業します(荒天時休園)。当番以外の園はお休みのことが多いので、行く際は各農園へ直接ご確認ください。</p>`;
+  return `<div class="${cls}">
+    <div class="day-label">${label} ${dateLabel}</div>
+    <div class="orchard-name">${entry.orchard}</div>
+  </div>`;
+}
+
+async function renderTobanSection(env: Env): Promise<string> {
+  const duty = await getDutyRange(env);
+  if (!duty.yesterday && !duty.today && !duty.tomorrow) {
+    return `
+<section class="toban-section">
+  <div class="section-inner">
+    <h2 class="section-title">当番園について</h2>
+    <p>只今はみかん狩りシーズン期間外です。シーズンは${SEASON_START}〜${SEASON_END}です。</p>
+  </div>
+</section>`;
+  }
+  return `
+<section class="toban-section">
+  <div class="section-inner">
+    <h2 class="section-title">本日の当番園</h2>
+    <p class="toban-season">シーズン: ${SEASON_START}〜${SEASON_END}(雨天休園)</p>
+    <div class="toban-grid">
+      ${renderDutyCard("昨日", duty.yesterday, false)}
+      ${renderDutyCard("本日", duty.today, true)}
+      ${renderDutyCard("明日", duty.tomorrow, false)}
+    </div>
+    <p class="note" style="margin-top:18px; text-align:center; color:#ffe6cf">
+      平日は当番園が営業します(荒天時休園)。土日祝日は基本的に全園開園です(荒天時のみ当番園が担当)。<br>
+      当番以外の園はお休みのことが多いので、行く際は各農園へ直接ご確認ください。
+    </p>
+  </div>
+</section>`;
 }
 
 async function renderHome(env: Env): Promise<string> {
-  const dutyHtml = await renderDutyBanner(env);
+  const tobanSectionHtml = await renderTobanSection(env);
   const faqs = await getActiveFaqs(env);
   const faqHtml = faqs
     .map((f) => `<details><summary>${f.question.split(",")[0]}</summary><p>${f.answer}</p></details>`)
@@ -85,10 +129,10 @@ async function renderHome(env: Env): Promise<string> {
   <div class="photo-bg" style="background-image:url('/images/hero-top.jpg')"></div>
   <div class="inner">
     <h1 class="sr-only">三浦市 みかん狩り</h1>
-    <p class="sub">${SEASON_START}〜${SEASON_END}(雨天休園)</p>
-    <div class="duty-banner">${dutyHtml}</div>
   </div>
 </div>
+
+${tobanSectionHtml}
 
 <section id="miryoku">
   <div class="section-inner">

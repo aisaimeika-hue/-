@@ -23,7 +23,6 @@ export function page(title: string, body: string, opts?: { wide?: boolean }): st
     background: #fffdf8; border: 1px solid #e3d6bb; border-radius: 14px;
     padding: 20px; margin-bottom: 20px;
   }
-  .duty-orchard { font-size: 1.8rem; font-weight: 800; color: #b8471f; margin: 8px 0; }
   .btn {
     display: inline-block; width: 100%; text-align: center;
     background: #b8471f; color: #fff; font-weight: 700; font-size: 1.1rem;
@@ -67,12 +66,32 @@ export function page(title: string, body: string, opts?: { wide?: boolean }): st
     position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
     overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
   }
-  .hero .sub { color: #ffe6cf; font-size: 1rem; margin-bottom: 18px; }
-  .hero .duty-banner {
-    display: inline-block; background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.4);
-    border-radius: 16px; padding: 14px 22px; margin-top: 4px; backdrop-filter: blur(2px);
+
+  .toban-section {
+    background: linear-gradient(160deg, #f0954b 0%, #e07a30 100%);
+    color: #fff; padding: 36px 16px; text-align: center;
   }
-  .hero .duty-banner .duty-orchard { color: #fff; }
+  .toban-section .section-title { color: #fff; }
+  .toban-section .section-title::before, .toban-section .section-title::after { background: rgba(255,255,255,0.7); }
+  .toban-season { color: #ffe6cf; font-size: 0.9rem; margin: -16px 0 24px; }
+  .toban-grid {
+    display: grid; grid-template-columns: 1fr 1.3fr 1fr; gap: 14px;
+    max-width: 720px; margin: 0 auto; align-items: stretch;
+  }
+  .toban-card {
+    background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 14px; padding: 16px 10px; display: flex; flex-direction: column; justify-content: center;
+  }
+  .toban-card .day-label { font-size: 0.8rem; color: #ffe6cf; margin-bottom: 8px; }
+  .toban-card .orchard-name { font-size: 1.15rem; font-weight: 800; line-height: 1.3; }
+  .toban-card .sub-note { font-size: 0.72rem; color: #ffe6cf; margin-top: 6px; }
+  .toban-card.today {
+    background: #fff; color: #b8471f; padding: 24px 14px; border-radius: 18px;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.2); border: none;
+  }
+  .toban-card.today .day-label { color: #b8471f; opacity: 0.75; font-weight: 700; }
+  .toban-card.today .orchard-name { font-size: 1.7rem; }
+  .toban-card.today .sub-note { color: #8a5a3a; }
 
   .pill-btn {
     display: inline-block; background: #b8471f; color: #fff; font-weight: 700;
