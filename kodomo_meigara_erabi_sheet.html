@@ -7,6 +7,7 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap');
   * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   body {
     font-family:'Noto Sans JP','Hiragino Sans','Meiryo',sans-serif;
     background:#f0f4f0;
@@ -14,12 +15,12 @@
     color:#1a2a1a;
   }
   .page {
-    width:794px; /* A4横幅相当(96dpi) */
-    min-height:1000px;
+    width:794px;        /* A4幅相当(96dpi) */
+    min-height:1123px;  /* A4高さ相当(96dpi) */
     margin:0 auto 24px;
     background:white;
     border-radius:14px;
-    padding:30px 36px;
+    padding:26px 34px;
     box-shadow:0 8px 32px rgba(0,0,0,0.12);
   }
   .head { text-align:center; margin-bottom:14px; border-bottom:4px solid #2d7a3a; padding-bottom:12px; }
@@ -71,9 +72,15 @@
 
   .doc-footer { text-align:center; font-size:9.5px; color:#888; margin-top:18px; }
 
+  @page { size:A4; margin:0; }
   @media print {
     body { background:white; padding:0; }
-    .page { box-shadow:none; border-radius:0; width:100%; min-height:0; page-break-after:always; }
+    .page {
+      box-shadow:none; border-radius:0;
+      width:210mm; min-height:297mm;
+      margin:0; padding:14mm 16mm;
+      page-break-after:always;
+    }
     .page:last-child { page-break-after:auto; }
   }
 </style>
