@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>投資プラン 総合検証レポート - ザ・作兵衛フルーツガーデン</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Sans JP', 'Hiragino Sans', 'Meiryo', sans-serif;
+    background: #f0f4f0;
+    padding: 20px;
+    font-size: 13px;
+    color: #1a2a1a;
+  }
+  .page {
+    width: 960px;
+    margin: 0 auto 24px;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  }
+  .main-header {
+    background: linear-gradient(135deg, #1a4a2a, #2d7a3a, #4caf50);
+    color: white;
+    padding: 26px 36px 20px;
+  }
+  .main-header .doc-type { font-size: 11px; opacity:.8; letter-spacing:3px; margin-bottom:5px; }
+  .main-header h1 { font-size: 22px; font-weight:900; line-height:1.35; margin-bottom:8px; }
+  .main-header .meta { display:flex; gap:20px; font-size:11.5px; opacity:.9; flex-wrap:wrap; }
+
+  .section { padding: 22px 32px; border-bottom: 1px solid #e8f0e8; }
+  .section:last-child { border-bottom: none; }
+  .section-title {
+    font-size:14px; font-weight:bold; color:#1a4a2a;
+    margin-bottom:14px; padding-bottom:7px;
+    border-bottom:3px solid #2d7a3a;
+    display:flex; align-items:center; gap:8px;
+  }
+
+  table { width:100%; border-collapse:collapse; margin-bottom:14px; font-size:12px; }
+  th { background:#1a4a2a; color:white; padding:8px 9px; text-align:center; font-size:11.5px; }
+  th.red { background:#c0392b; }
+  td { padding:7px 9px; border:1px solid #dce8dc; text-align:right; }
+  td.label { text-align:left; font-weight:bold; color:#1a4a2a; }
+  td.sub { text-align:left; color:#555; padding-left:18px; font-size:11.5px; }
+  tr:nth-child(even) td { background:#f7fcf7; }
+  tr.total td { background:#e8f5e8 !important; font-weight:bold; border-top:2px solid #2d7a3a; }
+  tr.warn td { background:#fff0f0 !important; }
+
+  .ok { color:#1a6a1a; font-weight:bold; }
+  .ng { color:#c0392b; font-weight:bold; }
+
+  .info-box  { border-radius:10px; padding:14px 18px; margin-bottom:14px; font-size:12.5px; line-height:1.9; }
+  .ib-green  { background:#f0fdf4; border:1.5px solid #22c55e; color:#14532d; }
+  .ib-amber  { background:#fffbeb; border:1.5px solid #f59e0b; color:#7c4a00; }
+  .ib-red    { background:#fff0f0; border:1.5px solid #e74c3c; color:#7f1d1d; }
+  .ib-blue   { background:#eff6ff; border:1.5px solid #3b82f6; color:#1e3a5f; }
+  .info-box .ib-title { font-weight:900; font-size:13.5px; margin-bottom:6px; display:flex; align-items:center; gap:6px; }
+
+  .choice-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:14px; }
+  .choice-card { border-radius:10px; padding:14px 16px; border:2px solid #2d7a3a; background:#f7fcf7; }
+  .choice-card h4 { font-size:12.5px; color:#1a4a2a; margin-bottom:8px; }
+  .choice-card p { font-size:11.5px; line-height:1.8; color:#333; }
+
+  .action-list { counter-reset: act; list-style:none; }
+  .action-list li { counter-increment: act; margin-bottom:10px; padding-left:34px; position:relative; font-size:12.5px; line-height:1.7; }
+  .action-list li::before {
+    content: counter(act);
+    position:absolute; left:0; top:0;
+    width:24px; height:24px; border-radius:50%;
+    background:#2d7a3a; color:white; font-weight:bold;
+    display:flex; align-items:center; justify-content:center; font-size:12px;
+  }
+
+  .doc-footer { background:#1a4a2a; color:rgba(255,255,255,.85); padding:14px 32px; font-size:11px; line-height:1.8; }
+  .doc-footer strong { color:white; }
+
+  @media print {
+    body { background:white; padding:0; }
+    .page { box-shadow:none; border-radius:0; width:100%; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="main-header">
+    <div class="doc-type">検証レポート ／ 娘たちの金融教育・投資プラン</div>
+    <h1>投資プラン 総合検証レポート【結論あり】</h1>
+    <div class="meta">
+      <span>作成日: 2026年9月7日</span>
+      <span>検証者: クロコ（PDM）</span>
+      <span>対象: 子供バスケット・プランA・プランB</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">📌 結論ファースト</div>
+
+    <div class="info-box ib-red">
+      <div class="ib-title">🚨 最重要：東京海上HD(8766)の株価、そのままだと計算が破綻します</div>
+      子供バスケットで使っている「512.9円」は<strong>分割後の理論株価</strong>です。実際に確認したところ、
+      分割の効力発生日は2026年10月1日（基準日9/30）で、<strong>今日買うと実勢価格7,976円前後</strong>が適用されます。
+      このまま234株買おうとすると、想定120,019円のつもりが<strong>実際は約186万円（約15.5倍）</strong>かかります。
+      詳細と対応の2択は「1. 最重要チェック」を参照してください。
+    </div>
+
+    <div class="info-box ib-green">
+      ✅ それ以外の数字（子供バスケット合計795,287円/23,303円、プランA合計30万円、プランB合計30万円/配当12,650円）は
+      すべて一円単位まで検算一致しました。安心してください。
+    </div>
+
+    <div class="info-box ib-amber">
+      ⚠️ プランBのサマリー文中「2%×18銘柄、3%×17銘柄」は表記ミスで、正しくは<strong>「2%×19銘柄、3%×16銘柄」</strong>
+      です（合計金額・配当は正しいので実害なし。文章だけの誤記）。
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">1. 最重要チェック：東京海上HD(8766)の価格基準</div>
+    <p style="margin-bottom:10px; line-height:1.8;">
+      実際にニュースを確認しました。東京海上HDは2026年8月25日に「1株→15株」の株式分割を発表済みです。
+    </p>
+    <table>
+      <tr><th>項目</th><th>内容</th></tr>
+      <tr><td class="label">分割比率</td><td>1株 → 15株</td></tr>
+      <tr><td class="label">基準日</td><td>2026年9月30日</td></tr>
+      <tr><td class="label">効力発生日（分割後の株価になる日）</td><td>2026年10月1日</td></tr>
+      <tr><td class="label">2026/9/4 15:30時点の実勢株価（分割前）</td><td>7,976.0円</td></tr>
+      <tr><td class="label">子供バスケットで使っていた株価</td><td>512.9円（＝分割後の理論株価）</td></tr>
+    </table>
+
+    <p style="margin-bottom:10px; line-height:1.8;">
+      つまり「512.9円」は<strong>10/1以降にならないと実現しない価格</strong>です。<strong>今日（9月上旬）注文すると
+      7,976円前後で約定します。</strong>
+    </p>
+
+    <table>
+      <tr><th>買うタイミング</th><th>株数</th><th>想定額</th><th>実際にかかる額</th><th>判定</th></tr>
+      <tr class="warn"><td class="label">今すぐ（分割前）</td><td>234株</td><td>120,019円</td><td>約1,866,384円</td><td class="ng">✕ 約15.5倍</td></tr>
+    </table>
+
+    <div class="choice-grid">
+      <div class="choice-card">
+        <h4>選択肢A：分割後（10/1以降）に買う</h4>
+        <p>512.9円ベースの234株がそのまま使える。ただし発注日の実際の分割後株価を証券アプリで再確認してから注文すること（分割発表後も株価は動いているため、512.9円ぴったりとは限らない）。</p>
+      </div>
+      <div class="choice-card">
+        <h4>選択肢B：今すぐ買う</h4>
+        <p>予算120,019円を守るなら、株数を<strong>約15株</strong>に減らす（7,976円×15株＝119,640円）。234株という株数はいったん忘れる。</p>
+      </div>
+    </div>
+    <p style="font-size:11.5px; color:#555;">
+      ※ どちらを選ぶかで「娘一人あたりの東京海上HD保有株数・配当額」が変わります。判断はお任せします。
+    </p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">2. 子供の教育目的バスケット（80万円/1人）検算結果</div>
+    <table>
+      <tr><th>銘柄</th><th>コード</th><th>株価</th><th>株数</th><th>投資額</th><th>年間配当（税引前）</th><th>検算</th></tr>
+      <tr><td class="label">三菱商事</td><td>8058</td><td>4,726.0円</td><td>25株</td><td>118,150円</td><td>3,125円</td><td class="ok">✓一致</td></tr>
+      <tr><td class="label">三井住友FG</td><td>8316</td><td>6,902円</td><td>23株</td><td>158,746円</td><td>4,140円</td><td class="ok">✓一致</td></tr>
+      <tr class="warn"><td class="label">東京海上HD</td><td>8766</td><td>512.9円</td><td>234株</td><td>120,019円</td><td>3,814円</td><td class="ng">要修正(上記1参照)</td></tr>
+      <tr><td class="label">三井不動産</td><td>8801</td><td>1,540.0円</td><td>62株</td><td>95,480円</td><td>2,294円</td><td class="ok">✓一致</td></tr>
+      <tr><td class="label">KDDI</td><td>9433</td><td>2,922.0円</td><td>49株</td><td>143,178円</td><td>4,116円</td><td class="ok">✓一致</td></tr>
+      <tr><td class="label">三菱HCキャピタル</td><td>8593</td><td>1,401.0円</td><td>114株</td><td>159,714円</td><td>5,814円</td><td class="ok">✓一致</td></tr>
+      <tr class="total"><td class="label">合計</td><td></td><td></td><td></td><td>795,287円</td><td>23,303円</td><td class="ok">✓ぴったり一致</td></tr>
+    </table>
+    <p style="font-size:11.5px; color:#555;">投資額・配当額とも、資料記載の合計と1円単位で一致を確認しました。目標80万円に対し795,287円（達成率99.4%）。</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">3. プランA：大型株シンプル型（30万円）検算結果</div>
+    <table>
+      <tr><th>銘柄</th><th>コード</th><th>9/4終値</th><th>配分%</th><th>投資額</th><th>参考株数</th><th>検算</th></tr>
+      <tr><td class="label">三菱商事</td><td>8058</td><td>4,902円</td><td>31.3%</td><td>93,900円</td><td>約19.16株</td><td class="ok">✓一致</td></tr>
+      <tr><td class="label">三菱UFJ</td><td>8306</td><td>3,785円</td><td>24.2%</td><td>72,600円</td><td>約19.18株</td><td class="ok">✓一致</td></tr>
+      <tr><td class="label">東京海上HD</td><td>8766</td><td>7,976円</td><td>25.5%</td><td>76,500円</td><td>約9.59株</td><td class="ok">✓一致（分割前の実勢価格を正しく使用）</td></tr>
+      <tr><td class="label">KDDI</td><td>9433</td><td>2,981.5円</td><td>19.0%</td><td>57,000円</td><td>約19.12株</td><td class="ok">✓一致</td></tr>
+      <tr class="total"><td class="label">合計</td><td></td><td></td><td>100%</td><td>300,000円</td><td></td><td class="ok">✓ぴったり一致</td></tr>
+    </table>
+    <div class="info-box ib-green" style="margin-top:8px;">
+      プランAは東京海上HDも分割前の実勢価格(7,976円)で統一して計算しており、内部矛盾なし。このまま実行して問題ありません。
+      ただしKDDIは9/3終値の代用値なので、発注直前に最新値だけ再確認してください。
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">4. プランB：学長流36銘柄分散型（30万円）検算結果</div>
+    <table>
+      <tr><th>項目</th><th>資料記載</th><th>CSV原本を集計</th><th>判定</th></tr>
+      <tr><td class="label">投資額 合計</td><td>300,000円</td><td>300,000円</td><td class="ok">✓一致</td></tr>
+      <tr><td class="label">想定配当 合計</td><td>12,650円</td><td>12,650円</td><td class="ok">✓一致</td></tr>
+      <tr><td class="label">想定利回り</td><td>4.22%</td><td>4.2167%</td><td class="ok">✓一致</td></tr>
+      <tr class="warn"><td class="label">銘柄数の内訳</td><td>2%×18銘柄／3%×17銘柄</td><td>2%×19銘柄／3%×16銘柄</td><td class="ng">文章の誤記（金額は正しい）</td></tr>
+    </table>
+    <p style="font-size:11.5px; color:#555; margin-bottom:10px;">
+      36銘柄ぶんのCSVを1件ずつ足し合わせて確認しました。投資額・配当額はどちらも1円単位で一致。
+      サマリー文中の「18銘柄／17銘柄」という書き方だけが数え間違いで、正しくは「19銘柄／16銘柄」です
+      （実際の発注金額には影響なし）。
+    </p>
+    <div class="info-box ib-blue">
+      <strong>東計電算(4746)</strong>：2026/9/29に1:4分割予定で利回り表示が情報源によりばらつく点は資料どおり要注意ですが、
+      「今日6,000円分を購入」という判断自体は分割の有無に関わらず金額指定なので問題なく実行できます。<br>
+      <strong>鈴木(6785)</strong>：資料の通り、ご本人がアプリで実在銘柄と確認済み。当方からの追加確認は不要と判断しました。
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">5. 次にやること</div>
+    <ol class="action-list">
+      <li><strong>東京海上HDの買い方を決める。</strong>「10/1以降まで待つ」か「今すぐ約15株に減らして買う」か。どちらでも問題ないので、こうちゃんの都合の良い方でOKです。</li>
+      <li>プランBのサマリー文章だけ「19銘柄／16銘柄」に直す（金額は変更不要）。</li>
+      <li>発注直前に、証券会社アプリで全銘柄の最新株価をもう一度確認する（特にKDDIと東京海上HD）。</li>
+      <li>子供名義口座で単元未満株（ミニ株・S株等）サービスが使えるか、証券会社に確認する（未確認事項として資料に記載済み）。</li>
+    </ol>
+  </div>
+
+  <div class="doc-footer">
+    <strong>お断り：</strong> 本レポートは会話ベースの資料の検算・突合であり、投資助言ではありません。
+    実行前には必ず証券会社アプリで最新の株価・配当情報をご確認ください。
+    株式分割に関する情報は2026年9月7日時点の公開報道をもとに確認しています。
+  </div>
+
+</div>
+</body>
+</html>
